@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon de Français FLE - Formule 1 & Analyse Vidéo</title>
+  <style>
+    :root {
+      --primary: #e10600; /* F1 Red */
+      --primary-hover: #b30500;
+      --bg: #0f1115;
+      --card-bg: #1a1d24;
+      --text: #f1f1f1;
+      --text-muted: #a0a5b1;
+      --accent: #38ef7d;
+      --border: #2a2e39;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .video-section {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 40px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .quiz-section, .vocab-section {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .question-card {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .question-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .question-category {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .cat-compréhension { background-color: #2196F3; color: white; }
+    .cat-vocabulaire { background-color: #9C27B0; color: white; }
+    .cat-grammaire { background-color: #FF9800; color: white; }
+    .cat-prononciation { background-color: #4CAF50; color: white; }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .btn-option {
+      background-color: #252932;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-option:hover:not([disabled]) {
+      background-color: #323745;
+      border-color: var(--primary);
+    }
+
+    .btn-option.correct {
+      background-color: #1e4620 !important;
+      border-color: #38ef7d !important;
+      color: #ffffff;
+    }
+
+    .btn-option.incorrect {
+      background-color: #4a1c1d !important;
+      border-color: #ff4e50 !important;
+      color: #ffffff;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.correct-bg {
+      background-color: rgba(56, 239, 125, 0.1);
+      border: 1px solid var(--accent);
+      color: #a3f7bf;
+    }
+
+    .feedback.incorrect-bg {
+      background-color: rgba(255, 78, 80, 0.1);
+      border: 1px solid #ff4e50;
+      color: #ff9e9e;
+    }
+
+    #score-board {
+      display: none;
+      text-align: center;
+      background: linear-gradient(135deg, #1a1d24, #2a0808);
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      margin-top: 30px;
+    }
+
+    #score-board h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    #score-board p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .vocab-item {
+      border-bottom: 1px solid var(--border);
+      padding: 15px 0;
+    }
+
+    .vocab-item:last-child {
+      border-bottom: none;
+    }
+
+    .vocab-term {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .vocab-translation {
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .vocab-def {
+      margin-bottom: 8px;
+    }
+
+    .vocab-example {
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 10px;
+      border-left: 3px solid var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .btn-reset {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Formule 1 & Langue Française</h1>
+    <p>Analyse de la vidéo : <em>« À quoi bon RESTER en Formule 1 ? »</em> (Monsieur Loupe, 30 mars 2026)</p>
+  </header>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <h2>📺 Support Vidéo</h2>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/_S6XpBnCE5o" title="YouTube video player" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section class="quiz-section">
+    <h2>🎯 Questionnaire de Compréhension & Langue (20 Questions)</h2>
+    <div id="quiz-container"></div>
+
+    <div id="score-board">
+      <h3>Résultat Final</h3>
+      <p id="score-text"></p>
+      <button class="btn-reset" onclick="resetQuiz()">Recommencer le quiz</button>
+    </div>
+  </section>
+
+  <!-- Vocabulary Section -->
+  <section class="vocab-section">
+    <h2>📚 Expressions & Vocabulaire Clés de la Vidéo</h2>
+    <div id="vocab-container"></div>
+  </section>
+</div>
+
+<script>
+const quizData = [
+  // Compréhension (1-5)
+  {
+    cat: "compréhension",
+    q: "1. Quelle œuvre d'art l'auteur utilise-t-il comme métaphore principale pour analyser le Grand Prix ?",
+    options: [
+      "La Joconde de Léonard de Vinci",
+      "La Grande Vague de Kanagawa de Hokusai",
+      "Le Penseur de Rodin",
+      "Le Cri d'Edvard Munch"
+    ],
+    answer: 1,
+    explain: "L'auteur compare l'évolution du Grand Prix du Japon à l'estampe 'La Grande Vague de Kanagawa' d'Hokusai."
+  },
+  {
+    cat: "compréhension",
+    q: "2. Quel pilote a remporté le Grand Prix du Japon 2026 évoqué dans la vidéo ?",
+    options: [
+      "George Russell",
+      "Oscar Piastri",
+      "Kimi Antonelli",
+      "Max Verstappen"
+    ],
+    answer: 2,
+    explain: "Kimi Antonelli a décroché sa deuxième victoire en carrière sur le circuit de Suzuka."
+  },
+  {
+    cat: "compréhension",
+    q: "3. Quel événement a perturbé la stratégie de course et pénalisé George Russell et Oscar Piastri ?",
+    options: [
+      "Une pluie soudaine",
+      "L'abandon de Max Verstappen",
+      "La sortie de la voiture de sécurité (Safety Car)",
+      "Un drapeau rouge dû au vent"
+    ],
+    answer: 2,
+    explain: "La sortie de la Safety Car au milieu des arrêt au stand a favorisé Antonelli et désavantagé Russell et Piastri."
+  },
+  {
+    cat: "compréhension",
+    q: "4. Pourquoi Max Verstappen est-il frustré par la nouvelle réglementation 2026 ?",
+    options: [
+      "Il trouve que les voitures sont trop rapides",
+      "Il estime que la gestion d'énergie dénature la F1 et que sa voiture sous-vire",
+      "Il n'aime pas le circuit de Suzuka",
+      "Son coéquipier le dépasse constamment"
+    ],
+    answer: 1,
+    explain: "Verstappen déplore que la F1 ressemble davantage à de la gestion d'énergie sur des 'bandes de recharge' qu'à du vrai pilotage."
+  },
+  {
+    cat: "compréhension",
+    q: "5. Que représente le mont Fuji dans l'analyse esthétique de la vidéo ?",
+    options: [
+      "Le calme immuable et lointain en contraste avec la tempête",
+      "La vitesse de la Mercedes",
+      "L'équipe Ferrari",
+      "Le public japonais"
+    ],
+    answer: 0,
+    explain: "Le Mont Fuji représente la stabilité rocheuse et immobile face au chaos éphémère de la mer/des vagues."
+  },
+
+  // Vocabulaire (6-10)
+  {
+    cat: "vocabulaire",
+    q: "6. Dans la phrase « un train arrière rétif », que signifie le mot « rétif » ?",
+    options: [
+      "Extrêmement rapide",
+      "Difficile à contrôler, résistant à l'autorité ou à la direction",
+      "Neuf et optimisé",
+      "Silencieux"
+    ],
+    answer: 1,
+    explain: "Un comportement 'rétif' désigne quelque chose qui refuse d'obéir ou de se laisser guider facilement."
+  },
+  {
+    cat: "vocabulaire",
+    q: "7. Que signifie l'expression « titiller l'écurie » ?",
+    options: [
+      "Provoquer ou taquiner de près un concurrent",
+      "Acheter une nouvelle équipe",
+      "Abandonner la course",
+      "Féliciter un pilote"
+    ],
+    answer: 0,
+    explain: "'Titiller' signifie agacer légèrement ou venir concurrencer de très près."
+  },
+  {
+    cat: "vocabulaire",
+    q: "8. Que veut dire l'expression « là où le bât blesse » ?",
+    options: [
+      "Là où se trouve le point le plus rapide",
+      "Là où réside la vraie difficulté ou le problème central",
+      "L'endroit où la piste est abîmée",
+      "Le moment du départ de la course"
+    ],
+    answer: 1,
+    explain: "Le 'bât' est la charge sur le dos d'une bête. Si le bât blesse, c'est là qu'est la souffrance ou le problème."
+  },
+  {
+    cat: "vocabulaire",
+    q: "9. Que signifie « annihiler » dans le contexte : « annihile tout l'intérêt de son style » ?",
+    options: [
+      "Multiplier par deux",
+      "Rendre nul, détruire complètement",
+      "Améliorer nettement",
+      "Rendre célèbre"
+    ],
+    answer: 1,
+    explain: "Annihiler vient du latin *nihil* (rien), signifiant réduire à néant."
+  },
+  {
+    cat: "vocabulaire",
+    q: "10. Qu'est-ce qu'une « estampe » ?",
+    options: [
+      "Un type de moteur hybride",
+      "Une image imprimée au moyen d'une planche gravée",
+      "Un virage très serré",
+      "Un casque de pilote"
+    ],
+    answer: 1,
+    explain: "Une estampe est une œuvre d'art imprimée (comme les gravures sur bois d'Hokusai)."
+  },
+
+  // Grammaire (11-15)
+  {
+    cat: "grammaire",
+    q: "11. Identifiez le mode verbal dans : « Si tant est que la tempête [...] accepte de se laisser dompter ».",
+    options: [
+      "Indicatif présent",
+      "Subjonctif présent",
+      "Conditionnel présent",
+      "Impératif"
+    ],
+    answer: 1,
+    explain: "La locution 'si tant est que' est toujours suivie du subjonctif ('accepte')."
+  },
+  {
+    cat: "grammaire",
+    q: "12. « Ne saurait être qu'une preuve de myopie » : quelle nuance apporte le verbe 'savoir' au conditionnel ?",
+    options: [
+      "Une certitude absolue dans la négation littéraire (ne peut être)",
+      "Une obligation stricte",
+      "Une action future garantie",
+      "Une question polie"
+    ],
+    answer: 0,
+    explain: "'Ne saurait être' est un registre soutenu équivalant à 'ne peut pas être'."
+  },
+  {
+    cat: "grammaire",
+    q: "13. Complétez la structure : « A contrario, et cela en dit tout aussi long, George Russell... » Que marque 'a contrario' ?",
+    options: [
+      "Une addition d'arguments",
+      "Une opposition ou un contraste marqué",
+      "Une conclusion logique",
+      "Une répétition"
+    ],
+    answer: 1,
+    explain: "'A contrario' permet de souligner un contraste direct entre deux situations."
+  },
+  {
+    cat: "grammaire",
+    q: "14. Dans la phrase : « un handicap [...] qui s'est même confirmé en course », quel est le temps du verbe ?",
+    options: [
+      "Imparfait",
+      "Passé composé à la forme pronominale",
+      "Plus-que-parfait",
+      "Présent de l'indicatif"
+    ],
+    answer: 1,
+    explain: "Il s'agit du passé composé du verbe pronominal 'se confirmer'."
+  },
+  {
+    cat: "grammaire",
+    q: "15. « À quoi bon rester ? » : quelle est la valeur grammaticale et sémantique de cette tournure ?",
+    options: [
+      "Une interrogation qui sous-entend l'inutilité d'une action",
+      "Une invitation festive",
+      "Une obligation légale",
+      "Une demande d'orientation spatiale"
+    ],
+    answer: 0,
+    explain: "'À quoi bon + infinitif' exprime le doute sur le sens ou l'utilité de faire quelque chose."
+  },
+
+  // Prononciation (16-20)
+  {
+    cat: "prononciation",
+    q: "16. Comment se prononce le mot 'estampe' ?",
+    options: [
+      "/ɛs.tɑ̃p/ (avec la voyelle nasale 'an')",
+      "/ɛs.tamp/ (en prononçant le 'm' distinctement)",
+      "/ɛs.tɛ̃p/ (avec la voyelle nasale 'in')",
+      "/e.stɔmp/"
+    ],
+    answer: 0,
+    explain: "Le groupe 'am' devant 'p' se prononce avec le son nasal /ɑ̃/ (comme dans 'champ')."
+  },
+  {
+    cat: "prononciation",
+    q: "17. Dans la phrase « un excès de patinage », comment prononce-t-on 'excès' ?",
+    options: [
+      "/ɛk.sɛ/ (le 's' final est muet)",
+      "/ɛk.sɛs/",
+      "/e.se/",
+      "/ɛk.szɛ/"
+    ],
+    answer: 0,
+    explain: "La lettre 's' finale du mot 'excès' est totalement muette en français moderne."
+  },
+  {
+    cat: "prononciation",
+    q: "18. Quelle liaison est correcte et obligatoire en français soutenu dans : « un arrêt au stand » ?",
+    options: [
+      "Un-n-arrêt (liaison du 'n')",
+      "Pas de liaison du tout",
+      "Un-n-arrêt-t-au stand (liaisons du 'n' et du 't')",
+      "Un arrêt-z-au"
+    ],
+    answer: 2,
+    explain: "En style fluide/soutenu, on fait la liaison entre l'article 'un' et 'arrêt' (/n/), ainsi qu'entre 'arrêt' et 'au' (/t/)."
+  },
+  {
+    cat: "prononciation",
+    q: "19. Combien de syllabes prononcées compte le mot 'sérénité' ?",
+    options: [
+      "2 syllabes",
+      "3 syllabes",
+      "4 syllabes (sé-ré-ni-té)",
+      "5 syllabes"
+    ],
+    answer: 2,
+    explain: "Le mot 'sérénité' se découpe nettement en 4 syllabes : sé-ré-ni-té."
+  },
+  {
+    cat: "prononciation",
+    q: "20. Le 'ch' dans 'châtaigne' et 'chrysanthème' se prononce-t-il de la même façon ?",
+    options: [
+      "Oui, tous les deux font /ʃ/ ('sh')",
+      "Non : /ʃ/ ('sh') pour châtaigne, et /k/ pour chrysanthème (origine grecque)",
+      "Non : /k/ pour châtaigne et /ʃ/ pour chrysanthème",
+      "Les deux se prononcent /k/"
+    ],
+    answer: 1,
+    explain: "'Châtaigne' se prononce /ʃ/ (ch), tandis que 'chrysanthème' (mot grec) se prononce /k/."
+  }
+];
+
+const vocabData = [
+  {
+    term: "À quoi bon ?",
+    trans: "What's the point? / What good is it?",
+    def: "Expression utilisée pour remettre en question l'utilité ou l'intérêt d'une action.",
+    ex: "« À quoi bon rester en Formule 1 si le plaisir de piloter n'est plus là ? »"
+  },
+  {
+    term: "Déferler",
+    trans: "To surge / To break (for a wave)",
+    def: "Arriver en masse et avec puissance (comme une vague gigantesque).",
+    ex: "« La vague monte et s'apprête à déferler sur le championnat. »"
+  },
+  {
+    term: "Un fait de course",
+    trans: "A racing incident",
+    def: "Un événement imprévu se produisant pendant une compétition automobile (accrochage, safety car, etc.).",
+    ex: "« De tous les faits de course qui l'ont perturbé, celui-ci est le plus révélateur. »"
+  },
+  {
+    term: "L'homme à abattre",
+    trans: "The man to beat / The target",
+    def: "La personne ou le concurrent que tout le monde cherche à vaincre.",
+    ex: "« Ce week-end, Antonelli a prouvé qu'il était l'homme à abattre. »"
+  },
+  {
+    term: "Bercer de faux espoirs / Se bercer d'illusions",
+    trans: "To delude oneself / To indulge in wishful thinking",
+    def: "S'entretenir dans des pensées optimistes mais irréalistes.",
+    ex: "« Penser que la stratégie seule a tout changé serait se bercer dans un procès rétroactif. »"
+  },
+  {
+    term: "En proie à...",
+    trans: "Plagued by... / In the grip of...",
+    def: "Être victime de difficultés, de doutes ou de problèmes techniques.",
+    ex: "« Russell a fait toute la course en proie à des réglages peu inspirés. »"
+  },
+  {
+    term: "Faire l'étalage de...",
+    trans: "To put on display / To show off",
+    def: "Exposer de façon très visible (souvent négativement).",
+    ex: "« Le circuit a fait l'étalage du pire de ce que la réglementation pouvait offrir. »"
+  },
+  {
+    term: "C'est là que le bât blesse",
+    trans: "That's where the shoe pinches / That's the snag",
+    def: "C'est exactement là que se situe le problème fondamental.",
+    ex: "« Max aime la course, mais c'est là que le bât blesse : ces voitures ne l'amusent plus. »"
+  },
+  {
+    term: "Un mois de répit",
+    trans: "A month of respite / A breather",
+    def: "Une période de pause ou de repos accordée au milieu d'une situation intense.",
+    ex: "« La FIA dispose d'un mois de répit avant la prochaine course à Miami. »"
+  },
+  {
+    term: "Titiller",
+    trans: "To challenge / To tickle / To harass",
+    def: "Mettre sous pression, rivaliser de très près avec quelqu'un.",
+    ex: "« McLaren a réussi à titiller les Red Bull pour disputer la victoire. »"
+  }
+];
+
+let userAnswers = new Array(quizData.length).fill(null);
+
+function renderQuiz() {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "";
+
+  quizData.forEach((q, index) => {
+    const card = document.createElement("div");
+    card.className = "question-card";
+
+    let catClass = `cat-${q.cat}`;
+    
+    card.innerHTML = `
+      <span class="question-category ${catClass}">${q.cat}</span>
+      <div class="question-title">${q.q}</div>
+      <div class="options-grid">
+        ${q.options.map((opt, i) => `
+          <button class="btn-option" id="opt-${index}-${i}" onclick="selectAnswer(${index}, ${i})">
+            ${String.fromCharCode(65 + i)}. ${opt}
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback" id="feedback-${index}"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function selectAnswer(qIndex, optIndex) {
+  if (userAnswers[qIndex] !== null) return; // Prevent changing answer
+
+  userAnswers[qIndex] = optIndex;
+  const q = quizData[qIndex];
+  const feedbackEl = document.getElementById(`feedback-${qIndex}`);
+
+  // Highlight options
+  for (let i = 0; i < q.options.length; i++) {
+    const btn = document.getElementById(`opt-${qIndex}-${i}`);
+    btn.disabled = true;
+    if (i === q.answer) {
+      btn.classList.add("correct");
+    } else if (i === optIndex) {
+      btn.classList.add("incorrect");
+    }
+  }
+
+  // Show feedback
+  feedbackEl.classList.add("show");
+  if (optIndex === q.answer) {
+    feedbackEl.classList.add("correct-bg");
+    feedbackEl.innerHTML = `<strong>✅ Bravo !</strong> ${q.explain}`;
+  } else {
+    feedbackEl.classList.add("incorrect-bg");
+    feedbackEl.innerHTML = `<strong>❌ Incorrect.</strong> La bonne réponse était la <strong>${String.fromCharCode(65 + q.answer)}</strong>.<br>${q.explain}`;
+  }
+
+  checkQuizCompletion();
+}
+
+function checkQuizCompletion() {
+  const allAnswered = userAnswers.every(ans => ans !== null);
+  if (allAnswered) {
+    const score = userAnswers.reduce((total, ans, idx) => {
+      return ans === quizData[idx].answer ? total + 1 : total;
+    }, 0);
+
+    const scoreBoard = document.getElementById("score-board");
+    const scoreText = document.getElementById("score-text");
+    
+    scoreText.innerHTML = `Vous avez obtenu <strong>${score} / ${quizData.length}</strong> (${Math.round((score/quizData.length)*100)}%).`;
+    scoreBoard.style.display = "block";
+    scoreBoard.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function resetQuiz() {
+  userAnswers = new Array(quizData.length).fill(null);
+  document.getElementById("score-board").style.display = "none";
+  renderQuiz();
+  window.scrollTo({ top: document.querySelector('.quiz-section').offsetTop, behavior: 'smooth' });
+}
+
+function renderVocab() {
+  const container = document.getElementById("vocab-container");
+  container.innerHTML = "";
+
+  vocabData.forEach(v => {
+    const item = document.createElement("div");
+    item.className = "vocab-item";
+    item.innerHTML = `
+      <div class="vocab-term">${v.term}</div>
+      <div class="vocab-translation">🇬🇧 ${v.trans}</div>
+      <div class="vocab-def"><strong>Définition :</strong> ${v.def}</div>
+      <div class="vocab-example"><em>Exemple :</em> ${v.ex}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Initial rendering
+renderQuiz();
+renderVocab();
+</script>
+
+</body>
+</html>

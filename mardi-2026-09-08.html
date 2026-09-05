@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon de Français - Un week-end paisible dans les Hautes-Alpes</title>
+  <style>
+    :root {
+      --primary: #2e6f40; /* Vert forêt / nature */
+      --primary-hover: #1e4b2a;
+      --accent: #d97706; /* Ambre / soleil */
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --error: #dc2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 15px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+      border-bottom: 4px solid var(--primary);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .video-section {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .quiz-section, .expressions-section {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .question-card {
+      background-color: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .question-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .question-category {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .cat-compréhension { background-color: #0284c7; }
+    .cat-vocabulaire { background-color: #9333ea; }
+    .cat-grammaire { background-color: #ea580c; }
+    .cat-prononciation { background-color: #16a34a; }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .btn-option {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-option:hover:not([disabled]) {
+      background-color: #f1f5f9;
+      border-color: var(--primary);
+    }
+
+    .btn-option.correct {
+      background-color: #dcfce7 !important;
+      border-color: var(--success) !important;
+      color: #14532d;
+      font-weight: bold;
+    }
+
+    .btn-option.incorrect {
+      background-color: #fee2e2 !important;
+      border-color: var(--error) !important;
+      color: #7f1d1d;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.correct-bg {
+      background-color: #f0fdf4;
+      border: 1px solid var(--success);
+      color: #166534;
+    }
+
+    .feedback.incorrect-bg {
+      background-color: #fef2f2;
+      border: 1px solid var(--error);
+      color: #991b1b;
+    }
+
+    #score-board {
+      display: none;
+      text-align: center;
+      background: #f0fdf4;
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      margin-top: 30px;
+    }
+
+    #score-board h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    #score-board p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-reset {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-reset:hover {
+      background-color: var(--primary-hover);
+    }
+
+    /* Section Expressions */
+    .expression-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 650px) {
+      .expression-card {
+        flex-direction: row;
+      }
+    }
+
+    .expression-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 650px) {
+      .expression-img {
+        width: 250px;
+        height: auto;
+      }
+    }
+
+    .expression-content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .expression-title {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .expression-trans {
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .expression-ex {
+      background-color: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🇫🇷 Une pause estivale dans les Alpes</h1>
+    <p>Exercices interactifs basés sur la vidéo d'Adeline Talks (31 juillet 2026)</p>
+  </header>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <h2>📺 Support Vidéo</h2>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/ot1losMmNCg" title="YouTube video player" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section class="quiz-section">
+    <h2>🎯 Questionnaire (20 Questions)</h2>
+    <div id="quiz-container"></div>
+
+    <div id="score-board">
+      <h3>Résultat Final</h3>
+      <p id="score-text"></p>
+      <button class="btn-reset" onclick="resetQuiz()">Recommencer le questionnaire</button>
+    </div>
+  </section>
+
+  <!-- Expressions Section -->
+  <section class="expressions-section">
+    <h2>💡 Expressions Clés & Situations Concrètes</h2>
+    <div id="expressions-container"></div>
+  </section>
+</div>
+
+<script>
+const quizData = [
+  // Compréhension (1-5)
+  {
+    cat: "compréhension",
+    q: "1. Pourquoi Adeline a-t-elle décidé de quitter la Provence pour aller dans les Hautes-Alpes ?",
+    options: [
+      "Pour aller faire du ski de piste",
+      "Parce que la chaleur devenait trop lourde en Provence",
+      "Pour rendre visite à sa grand-mère",
+      "Pour assister à un mariage"
+    ],
+    answer: 1,
+    explain: "Au début de la vidéo, Adeline explique qu'il faisait beaucoup trop chaud en Provence et qu'elle cherchait de la fraîcheur en altitude."
+  },
+  {
+    cat: "compréhension",
+    q: "2. Quel conseil la grand-mère d'Adeline lui donnait-elle en cas d'angoisse ou de soucis ?",
+    options: [
+      "De boire un café chaud avec une brioche",
+      "De se baigner dans un lac de montagne",
+      "D'aller dans la forêt car les arbres ont les pieds sur terre",
+      "De lire un roman de Zola"
+    ],
+    answer: 2,
+    explain: "Sa grand-mère lui conseillait d'aller en forêt parce que « les arbres ont les pieds sur terre depuis bien plus longtemps que nous »."
+  },
+  {
+    cat: "compréhension",
+    q: "3. Pourquoi Adeline ne se baigne-t-elle pas dans le lac Sainte-Marguerite ?",
+    options: [
+      "L'eau est trop froide",
+      "Elle a oublié son maillot de bain",
+      "La baignade y est interdite",
+      "Elle n'a pas le temps"
+    ],
+    answer: 2,
+    explain: "Adeline indique qu'elle piquerait bien une tête, mais que la baignade est interdite."
+  },
+  {
+    cat: "compréhension",
+    q: "4. Quelle conversation amusante Adeline entend-elle depuis son hébergement Airbnb ?",
+    options: [
+      "Deux hommes discutant de la météo pour le lendemain",
+      "Un homme de 60 ans expliquant qu'il va épouser une femme qu'il connaît à peine",
+      "Un serveur qui refuse de servir des clients",
+      "Des touristes qui se sont perdus en montagne"
+    ],
+    answer: 1,
+    explain: "Adeline entend deux hommes discuter au bar du dessous : un sexagénaire qui veut se marier rapidement pour ne pas finir seul."
+  },
+  {
+    cat: "compréhension",
+    q: "5. Quel surnom donne-t-on à la ville d'Embrun près du lac de Serre-Ponçon ?",
+    options: [
+      "La capitale des Hautes-Alpes",
+      "La Petite Venise des montagnes",
+      "La Nice des Alpes",
+      "Le paradis des randonneurs"
+    ],
+    answer: 2,
+    explain: "Embrun est surnommée « la Nice des Alpes » en raison de ses plus de 300 jours de soleil par an."
+  },
+
+  // Vocabulaire (6-10)
+  {
+    cat: "vocabulaire",
+    q: "6. Que signifie l'expression « piquer une tête » utilisée au bord du lac ?",
+    options: [
+      "Se faire piquer par un insecte",
+      "S'énerver soudainement",
+      "Aller se baigner ou faire un plongeon",
+      "Faire une courte sieste"
+    ],
+    answer: 2,
+    explain: "« Piquer une tête » est une expression familière très courante qui signifie aller se baigner."
+  },
+  {
+    cat: "vocabulaire",
+    q: "7. Que veut dire l'adjectif provençal « fada » dans : « Mais tu es fou, tu es fada ! » ?",
+    options: [
+      "Un peu timide",
+      "Un peu fou ou cinglé",
+      "Très généreux",
+      "Fatigué"
+    ],
+    answer: 1,
+    explain: "« Fada » est un mot d'origine provençale très employé dans le Sud de la France pour dire 'fou' ou 'zinzin'."
+  },
+  {
+    cat: "vocabulaire",
+    q: "8. Que signifie la tournure « avoir l'esprit qui divague » ?",
+    options: [
+      "Avoir une excellente mémoire",
+      "Penser à plein de choses de manière désordonnée ou être distrait",
+      "Être très en colère",
+      "Apprendre par cœur"
+    ],
+    answer: 1,
+    explain: "Divaguer signifie s'écarter du sujet ou laisser ses pensées errer sans contrôle."
+  },
+  {
+    cat: "vocabulaire",
+    q: "9. Qu'est-ce qu'un « recueil » (ex: « un recueil de Zola ») ?",
+    options: [
+      "Un livre regroupant plusieurs textes, nouvelles ou poèmes",
+      "Un roman historique très long",
+      "Un dictionnaire de synonymes",
+      "Un journal intime"
+    ],
+    answer: 0,
+    explain: "Un recueil est un ouvrage qui rassemble plusieurs œuvres d'un même auteur."
+  },
+  {
+    cat: "vocabulaire",
+    q: "10. Que signifie l'expression populaire « Mariage plus vieux, mariage heureux » détournée dans la vidéo ?",
+    options: [
+      "Se marier en été porte chance",
+      "Il vaut mieux se marier après 60 ans",
+      "Détournement de 'Mariage pluvieux, mariage heureux' (se marier sous la pluie porte bonheur)",
+      "Les mariages coûtent plus cher en montagne"
+    ],
+    answer: 2,
+    explain: "C'est un jeu de mots avec le dicton populaire « Mariage pluvieux, mariage heureux »."
+  },
+
+  // Grammaire (11-15)
+  {
+    cat: "grammaire",
+    q: "11. Dans la phrase : « Je piquerai bien une tête », à quel temps et mode est le verbe 'piquer' ?",
+    options: [
+      "Futur simple de l'indicatif",
+      "Conditionnel présent",
+      "Imparfait de l'indicatif",
+      "Subjonctif présent"
+    ],
+    answer: 1,
+    explain: "« Piquerai » avec un 'i' final après le 'r' exprime ici un souhait atténué au conditionnel présent."
+  },
+  {
+    cat: "grammaire",
+    q: "12. Observez : « Je suis un peu essoufflée parce qu'on marche depuis 3h déjà ». Quelle nuance apporte 'depuis' ?",
+    options: [
+      "Une action terminée dans le passé",
+      "Une action commencée dans le passé qui continue au moment où l'on parle",
+      "Une obligation future",
+      "Une durée limitée dans le futur"
+    ],
+    answer: 1,
+    explain: "'Depuis' s'utilise avec le présent pour une action qui a débuté dans le passé et qui dure encore."
+  },
+  {
+    cat: "grammaire",
+    q: "13. Complétez la phrase selon l'usage d'Adeline : « Quand la chaleur [...] trop lourde, il suffit de prendre de la hauteur. »",
+    options: [
+      "devient",
+      "devenait",
+      "deviendra",
+      "soit devenue"
+    ],
+    answer: 0,
+    explain: "On utilise le présent de l'indicatif pour exprimer une vérité générale ou une habitude."
+  },
+  {
+    cat: "grammaire",
+    q: "14. Quelle est la forme correcte du pronom indéfini dans : « Il y en a qui parlent de leur programme... » ?",
+    options: [
+      "Il y a en qui",
+      "Il y en a qui",
+      "Il y a des qui",
+      "Il en a qui"
+    ],
+    answer: 1,
+    explain: "La structure 'Il y en a qui + verbe' permet de désigner une partie d'un groupe."
+  },
+  {
+    cat: "grammaire",
+    q: "15. Transposez au style indirect : Il m'a dit : « Je ne veux pas finir seul ». -> Il m'a dit qu'il...",
+    options: [
+      "ne veut pas finir seul",
+      "ne voulait pas finir seul",
+      "ne voudra pas finir seul",
+      "ne finisse pas seul"
+    ],
+    answer: 1,
+    explain: "Quand le verbe introducteur est au passé ('a dit'), le présent au style direct devient un imparfait au style indirect."
+  },
+
+  // Prononciation (16-20)
+  {
+    cat: "prononciation",
+    q: "16. Comment se prononce l'adjectif 'frais' (au masculin) dans « Il fait frais » ?",
+    options: [
+      "/fʁɛ/ (le 's' final est muet)",
+      "/fʁɛs/",
+      "/fʁe.zə/",
+      "/fʁa/"
+    ],
+    answer: 0,
+    explain: "Au masculin, la lettre 's' finale de 'frais' ne se prononce pas."
+  },
+  {
+    cat: "prononciation",
+    q: "17. Dans le mot 'recueil' (livre), comment se prononce la terminaison '-ueil' ?",
+    options: [
+      "/œj/ (comme dans 'œil' ou 'accueil')",
+      "/ɥil/",
+      "/u.-ɛl/",
+      "/œʁ/"
+    ],
+    answer: 0,
+    explain: "Devant le son /j/, la séquence 'cueil' ou 'queil' se prononce /œj/."
+  },
+  {
+    cat: "prononciation",
+    q: "18. Quelle est la bonne prononciation du mot 'Hautes-Alpes' ?",
+    options: [
+      "/ot.zalp/ (avec liaison du 's' en /z/)",
+      "/o.alp/ (sans liaison)",
+      "/ut.zalp/",
+      "/ot.alp/"
+    ],
+    answer: 0,
+    explain: "On fait la liaison sonore en /z/ entre 'Hautes' et 'Alpes' : /ot.zalp/."
+  },
+  {
+    cat: "prononciation",
+    q: "19. Quel son nasal entend-on dans la première syllabe du mot 'randonnée' ?",
+    options: [
+      "Le son /ɑ̃/ (comme dans 'vent' ou 'en')",
+      "Le son /ɛ̃/ (comme dans 'vin')",
+      "Le son /ɔ̃/ (comme dans 'bon')",
+      "Aucun son nasal"
+    ],
+    answer: 0,
+    explain: "Le groupe 'an' dans 'randonnée' produit la voyelle nasale /ɑ̃/."
+  },
+  {
+    cat: "prononciation",
+    q: "20. Comment prononce-t-on l'enchaînement « prendre un peu de hauteur » ?",
+    options: [
+      "Le 'h' de hauteur est aspiré : pas de liaison après 'de' (/də.otœʁ/)",
+      "On fait la liaison : /də.zotœʁ/",
+      "On élide le 'e' : /dotœʁ/",
+      "Le 'h' se prononce comme en anglais"
+    ],
+    answer: 0,
+    explain: "Le 'h' de 'hauteur' est un 'h aspiré', il interdit la liaison et l'élision avec le mot précédent."
+  }
+];
+
+const expressionsData = [
+  {
+    title: "Prendre de la hauteur",
+    trans: "To gain perspective / To head for higher ground",
+    ex: "Quand le travail devient trop stressant, il faut savoir prendre de la hauteur et s'accorder un week-end au calme.",
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Piquer une tête",
+    trans: "To go for a dip / To take a plunge",
+    ex: "Il faisait tellement chaud cet après-midi que nous avons piqué une tête dans la piscine.",
+    img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Être essoufflé(e)",
+    trans: "To be out of breath",
+    ex: "Après avoir monté les escaliers avec toutes ces valises, j'étais complètement essoufflé.",
+    img: "https://defis.ca/wp-content/uploads/2022/02/Courir-sans-sessouffler-1024x576.png"
+  },
+  {
+    title: "Avoir les pieds sur terre",
+    trans: "To be down-to-earth / To stay grounded",
+    ex: "C'est une personne très réaliste, elle garde toujours les pieds sur terre malgré son succès.",
+    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Se contenter de...",
+    trans: "To make do with... / To settle for...",
+    ex: "Comme le musée était fermé, nous nous sommes contentés d'admirer la façade depuis la rue.",
+    img: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Être fada",
+    trans: "To be crazy / To be nuts (Southern French slang)",
+    ex: "Rouler aussi vite sur cette petite route de montagne, mais tu es complètement fada !",
+    img: "https://as1.ftcdn.net/jpg/02/31/03/46/1000_F_231034692_3Jr3V9In9uHX2npNiXWhZTrf9W93BXd5.jpg"
+  },
+  {
+    title: "Après la pluie, le beau temps",
+    trans: "Every cloud has a silver lining / After the storm comes the calm",
+    ex: "Ne t'inquiète pas pour cet échec, après la pluie, le beau temps : les choses vont s'améliorer.",
+    img: "https://images.unsplash.com/photo-1519692933481-e162a57d6721?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Avoir l'esprit qui divague",
+    trans: "To have a wandering mind",
+    ex: "Pendant la réunion, j'avais l'esprit qui divaguait et je pensais à mes prochaines vacances.",
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Prendre soin de ses proches",
+    trans: "To take care of one's loved ones",
+    ex: "Pendant les vacances de fin d'année, l'important est de se reposer et de prendre soin de ses proches.",
+    img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "Prendre des forces",
+    trans: "To build up one's strength / To fuel up",
+    ex: "Mange un bon petit-déjeuner avant la randonnée pour prendre des forces !",
+    img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+let userAnswers = new Array(quizData.length).fill(null);
+
+function renderQuiz() {
+  const container = document.getElementById("quiz-container");
+  container.innerHTML = "";
+
+  quizData.forEach((q, index) => {
+    const card = document.createElement("div");
+    card.className = "question-card";
+
+    let catClass = `cat-${q.cat}`;
+    
+    card.innerHTML = `
+      <span class="question-category ${catClass}">${q.cat}</span>
+      <div class="question-title">${q.q}</div>
+      <div class="options-grid">
+        ${q.options.map((opt, i) => `
+          <button class="btn-option" id="opt-${index}-${i}" onclick="selectAnswer(${index}, ${i})">
+            ${String.fromCharCode(65 + i)}. ${opt}
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback" id="feedback-${index}"></div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function selectAnswer(qIndex, optIndex) {
+  if (userAnswers[qIndex] !== null) return;
+
+  userAnswers[qIndex] = optIndex;
+  const q = quizData[qIndex];
+  const feedbackEl = document.getElementById(`feedback-${qIndex}`);
+
+  for (let i = 0; i < q.options.length; i++) {
+    const btn = document.getElementById(`opt-${qIndex}-${i}`);
+    btn.disabled = true;
+    if (i === q.answer) {
+      btn.classList.add("correct");
+    } else if (i === optIndex) {
+      btn.classList.add("incorrect");
+    }
+  }
+
+  feedbackEl.classList.add("show");
+  if (optIndex === q.answer) {
+    feedbackEl.classList.add("correct-bg");
+    feedbackEl.innerHTML = `<strong>✅ Excellent !</strong> ${q.explain}`;
+  } else {
+    feedbackEl.classList.add("incorrect-bg");
+    feedbackEl.innerHTML = `<strong>❌ Réponse incorrecte.</strong> La bonne réponse était la <strong>${String.fromCharCode(65 + q.answer)}</strong>.<br>${q.explain}`;
+  }
+
+  checkQuizCompletion();
+}
+
+function checkQuizCompletion() {
+  const allAnswered = userAnswers.every(ans => ans !== null);
+  if (allAnswered) {
+    const score = userAnswers.reduce((total, ans, idx) => {
+      return ans === quizData[idx].answer ? total + 1 : total;
+    }, 0);
+
+    const scoreBoard = document.getElementById("score-board");
+    const scoreText = document.getElementById("score-text");
+    
+    scoreText.innerHTML = `Score obtenu : <strong>${score} / ${quizData.length}</strong> (${Math.round((score/quizData.length)*100)}%).`;
+    scoreBoard.style.display = "block";
+    scoreBoard.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function resetQuiz() {
+  userAnswers = new Array(quizData.length).fill(null);
+  document.getElementById("score-board").style.display = "none";
+  renderQuiz();
+  window.scrollTo({ top: document.querySelector('.quiz-section').offsetTop, behavior: 'smooth' });
+}
+
+function renderExpressions() {
+  const container = document.getElementById("expressions-container");
+  container.innerHTML = "";
+
+  expressionsData.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "expression-card";
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" class="expression-img">
+      <div class="expression-content">
+        <div class="expression-title">${item.title}</div>
+        <div class="expression-trans">🇬🇧 ${item.trans}</div>
+        <div class="expression-ex"><strong>Exemple concret :</strong> ${item.ex}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Initialisation
+renderQuiz();
+renderExpressions();
+</script>
+
+</body>
+</html>

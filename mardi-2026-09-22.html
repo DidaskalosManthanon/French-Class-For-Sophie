@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leçon FLE - Comment se faire respecter par les Français</title>
+  <style>
+    :root {
+      --primary: #1e293b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --error: #dc2626;
+      --success-bg: #f0fdf4;
+      --error-bg: #fef2f2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    .category-header {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 25px 0 15px 0;
+      background: #eff6ff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .question-text {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .option-btn:hover:not([disabled]) {
+      border-color: var(--accent);
+      background-color: #f0f7ff;
+    }
+
+    .option-btn.correct {
+      background-color: var(--success-bg) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    .explanation {
+      margin-top: 15px;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .explanation.correct-exp {
+      background: var(--success-bg);
+      color: #14532d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .explanation.incorrect-exp {
+      background: var(--error-bg);
+      color: #7f1d1d;
+      border: 1px solid #fecaca;
+    }
+
+    /* Expressions Section */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 650px) {
+      .expressions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .expr-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expr-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+
+    .expr-body {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .expr-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .expr-meaning {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .expr-example {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 10px 12px;
+      border-radius: 6px;
+      border-left: 3px solid var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🇫🇷 Leçon FLE : La Politesse et la Mentalité Française</h1>
+    <p>Compréhension orale, grammaire, vocabulaire et expressions de la vie quotidienne</p>
+  </header>
+
+  <!-- Vidéo YouTube -->
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/SC6uwlXqyOI" title="YouTube video player" allowfullscreen></iframe>
+  </div>
+
+  <!-- QCM Section -->
+  <section>
+    <h2 class="section-title">📝 Questionnaire de Validation</h2>
+    <div id="quiz-container"></div>
+  </section>
+
+  <!-- Expressions Illustrées -->
+  <section>
+    <h2 class="section-title">💡 10 Expressions et Formules Utiles de la Vie Quotidienne</h2>
+    <div class="expressions-grid" id="expressions-container"></div>
+  </section>
+</div>
+
+<script>
+  const quizData = [
+    // --- COMPRÉHENSION (5 Q) ---
+    {
+      category: "Compréhension Orale",
+      question: "1. Selon la vidéo, quelle est la PREMIÈRE chose à dire avant de poser une question à quelqu'un dans la rue ?",
+      options: ["Excusez-moi", "S'il vous plaît", "Bonjour (ou Bonsoir)", "Pouvez-vous m'aider ?"],
+      answer: 2,
+      explanation: "En France, dire 'Bonjour' d'abord est indispensable avant de demander de l'aide ou une information."
+    },
+    {
+      category: "Compréhension Orale",
+      question: "2. Pourquoi Aurélie déconseille-t-elle d'utiliser l'expression 'De rien' après un remerciement ?",
+      options: [
+        "Parce que c'est une formule trop ancienne",
+        "Parce que cela minimise l'action que vous avez faite pour la personne",
+        "Parce que c'est considéré comme une insulte",
+        "Parce que seuls les enfants l'utilisent"
+      ],
+      answer: 1,
+      explanation: "Elle explique que 'De rien' donne l'impression que votre geste n'avait aucune valeur, alors que 'Je vous en prie' est plus valorisant et poli."
+    },
+    {
+      category: "Compréhension Orale",
+      question: "3. Quelle expérience Aurélie a-t-elle vécue lorsqu'elle est arrivée à l'école à Marseille ?",
+      options: [
+        "Elle a oublié de dire bonjour au directeur",
+        "Elle a tutoyé sa maîtresse, ce qui a provoqué une leçon de morale devant toute la classe",
+        "Elle a refusé de parler en français",
+        "Elle a demandé de l'argent aux autres élèves"
+      ],
+      answer: 1,
+      explanation: "En Polynésie, elle tutoyait ses professeurs par respect. À Marseille, le tutoiement a été perçu comme un manque de respect par son institutrice."
+    },
+    {
+      category: "Compréhension Orale",
+      question: "4. Pourquoi la discrétion et le respect de l'espace personnel sont-ils très importants dans les villes françaises ?",
+      options: [
+        "Parce que les lois l'interdisent",
+        "Parce que les villes sont anciennes et qu'on y est souvent à l'étroit (cafés, métro)",
+        "Parce que les Français n'aiment pas parler",
+        "Parce qu'il y a trop de voitures dans les rues"
+      ],
+      answer: 1,
+      explanation: "Les espaces urbains et les terrasses de café étant restreints, il est essentiel d'être discret pour préserver la bulle personnelle de chacun."
+    },
+    {
+      category: "Compréhension Orale",
+      question: "5. Que s'est-il passé quand Aurélie a voulu entrer dans l'épicerie à 9h-10 (10 minutes avant l'ouverture) ?",
+      options: [
+        "L'épicier l'a laissée entrer immédiatement",
+        "L'épicier a baissé les prix pour elle",
+        "L'épicier a refusé sèchement et lui a dit de revenir à 9h00 précises",
+        "Elle a appelé la police"
+      ],
+      answer: 2,
+      explanation: "L'épicier a privilégié la règle sur l'argent ('l'argent n'est pas roi en France'), lui demandant d'attendre l'heure exacte d'ouverture."
+    },
+
+    // --- VOCABULAIRE (5 Q) ---
+    {
+      category: "Vocabulaire",
+      question: "6. Que signifie le mot 'péremptoire' lorsqu'on dit que la phrase 'Je veux un café' est péremptoire ?",
+      options: ["Très poli et chaleureux", "Autoritaire, catégorique et sans nuance", "Drôle et amusant", "Incompréhensible"],
+      answer: 1,
+      explanation: "'Péremptoire' qualifie un ton ou une attitude autoritaire qui n'accepte aucun refus ou débat."
+    },
+    {
+      category: "Vocabulaire",
+      question: "7. Que signifie l'expression familière 'C'est la douche froide' ?",
+      options: [
+        "Se baigner dans une eau glacée en été",
+        "Une déception brutale ou une désillusion soudaine",
+        "Prendre une douche très rapidement",
+        "Avoir un problème de plomberie"
+      ],
+      answer: 1,
+      explanation: "Une 'douche froide' désigne une réaction négative et inattendue qui calme immédiatement l'enthousiasme."
+    },
+    {
+      category: "Vocabulaire",
+      question: "8. Dans le contexte de la vidéo, qu'est-ce que le 'vouvoiement' ?",
+      options: [
+        "L'action de dire au revoir",
+        "L'utilisation du pronom 'vous' pour s'adresser à quelqu'un par politesse ou distance",
+        "Le fait d'interrompre une personne",
+        "L'habitude de parler très fort"
+      ],
+      answer: 1,
+      explanation: "Le vouvoiement consiste à employer 'vous' au lieu de 'tu' pour faire preuve de respect envers une personne qu'on connaît peu."
+    },
+    {
+      category: "Vocabulaire",
+      question: "9. Que signifie l'expression 'L'argent n'est pas roi' en France ?",
+      options: [
+        "Le roi de France n'avait pas d'argent",
+        "Les banques sont gratuites",
+        "L'argent ne permet pas de tout acheter ni de contourner les règles de politesse ou de fonctionnement",
+        "Les commerçants refusent les cartes bancaires"
+      ],
+      answer: 2,
+      explanation: "Cela signifie que la courtoisie, les règles administratives et la qualité de vie priment souvent sur le simple gain financier."
+    },
+    {
+      category: "Vocabulaire",
+      question: "10. Quel est la différence exacte entre 'avoir de l'assurance' et 'être arrogant' ?",
+      options: [
+        "L'assurance est un contrat bancaire, l'arrogance est un sport",
+        "L'assurance est la confiance en soi polie, tandis que l'arrogance est un mépris supérieur envers les autres",
+        "C'est la même chose",
+        "L'assurance s'utilise uniquement au travail"
+      ],
+      answer: 1,
+      explanation: "Avoir de l'assurance, c'est s'exprimer avec clarté et fermeté tout en restant respectueux, à l'inverse de l'arrogance."
+    },
+
+    // --- GRAMMAIRE (5 Q) ---
+    {
+      category: "Grammaire",
+      question: "11. Quelle tournure utilise le conditionnel de politesse pour demander de l'aide ?",
+      options: [
+        "Vous pouvez m'aider s'il vous plaît ?",
+        "Vous pourriez m'aider s'il vous plaît ?",
+        "Vous aidez-moi s'il vous plaît ?",
+        "Vous allez m'aider s'il vous plaît ?"
+      ],
+      answer: 1,
+      explanation: "'Pourriez' est le verbe 'pouvoir' au conditionnel présent, ce qui rend la demande plus douce et polie."
+    },
+    {
+      category: "Grammaire",
+      question: "12. Dans les e-mails professionnels, quelle formule polie utilise l'impératif du verbe 'vouloir' ?",
+      options: [
+        "Veuillez répondre à ce message.",
+        "Voulez répondre à ce message.",
+        "Voulant répondre à ce message.",
+        "Voudrez répondre à ce message."
+      ],
+      answer: 0,
+      explanation: "'Veuillez + infinitif' est la formule consacrée pour exprimer une demande polie à l'écrit."
+    },
+    {
+      category: "Grammaire",
+      question: "13. Choisissez la forme correcte : 'Si vous avez de la patience, vous ________ (obtenir) un bon service.'",
+      options: ["obtiendrez", "obteniez", "obtiendrais", "obtenez"],
+      answer: 0,
+      explanation: "Dans une structure avec 'Si + présent' (Si vous avez...), la proposition principale se met au futur simple (obtiendrez)."
+    },
+    {
+      category: "Grammaire",
+      question: "14. Quelle est la phrase correcte pour demander un pain au chocolat en boulangerie ?",
+      options: [
+        "Je veux un pain au chocolat.",
+        "Donne-moi un pain au chocolat.",
+        "Je voudrais un pain au chocolat, s'il vous plaît.",
+        "J'ai besoin un pain au chocolat."
+      ],
+      answer: 2,
+      explanation: "L'association de 'Je voudrais' (conditionnel) et de 's'il vous plaît' constitue la forme standard de politesse."
+    },
+    {
+      category: "Grammaire",
+      question: "15. Complétez la phrase : 'Il vaut toujours mieux ________ trop poli que pas assez.'",
+      options: ["être", "étant", "été", "sois"],
+      answer: 0,
+      explanation: "Après la structure impersonnelle 'Il vaut mieux', on utilise la forme infinitive du verbe ('être')."
+    },
+
+    // --- PRONONCIATION & PHONÉTIQUE (5 Q) ---
+    {
+      category: "Prononciation & Liaison",
+      question: "16. Dans la phrase 'Je vous en prie', comment se fait la liaison entre 'vous' et 'en' ?",
+      options: [
+        "Comme un son [s] : /vu s-ɑ̃ pri/",
+        "Comme un son [z] : /vu z-ɑ̃ pri/",
+        "Aucune liaison n'est faite",
+        "Comme un son [t] : /vu t-ɑ̃ pri/"
+      ],
+      answer: 1,
+      explanation: "Le 's' final de 'vous' suivi d'une voyelle ('en') se prononce [z] : /vu-z-ɑ̃-pri/."
+    },
+    {
+      category: "Prononciation & Élision",
+      question: "17. Dans la prononciation courante de 'S'il te plaît', quelle lettre disparaît souvent à l'oral ?",
+      options: [
+        "Le 'S'",
+        "Le 'e' de 'te' (on entend souvent 'S'il t'plaît' /sil tplɛ/)",
+        "Le 't' de 'plaît'",
+        "Le 'l' de 'S'il'"
+      ],
+      answer: 1,
+      explanation: "À l'oral rapide, le 'e' caduc tombe souvent, transformant 'S'il te plaît' en 'S'il t'plaît'."
+    },
+    {
+      category: "Prononciation & Intonation",
+      question: "18. Quelle est la tendance de l'intonation française à la fin d'une question fermée (ex: 'Vous pourriez m'aider ?') ?",
+      options: [
+        "L'intonation monte vers le haut à la dernière syllabe",
+        "L'intonation descend très bas",
+        "L'intonation reste parfaitement monotone",
+        "On marque une pause de 3 secondes avant la réponse"
+      ],
+      answer: 0,
+      explanation: "En français, l'intonation monte à la fin des questions pour marquer l'interrogation."
+    },
+    {
+      category: "Prononciation",
+      question: "19. Comment se prononce le verbe 'Veuillez' (/vœ.je/) ?",
+      options: [
+        "Avec un son 'L' dur comme dans 'ville'",
+        "Avec un son semi-voyelle 'Y' (/j/) comme dans 'yeux'",
+        "La dernière lettre 'z' se prononce très fort",
+        "Comme le mot 'vieille'"
+      ],
+      answer: 1,
+      explanation: "Le groupe '-ille-' dans 'veuillez' produit le son mouillé /j/ (yeux, soleil), et le 'z' est muet."
+    },
+    {
+      category: "Prononciation",
+      question: "20. Quelle est la bonne prononciation des voyelles nasales dans 'Bon jour' et 'Bon soir' ?",
+      options: [
+        "Le 'n' se prononce clairement en touchant les dents",
+        "La voyelle est nasalisée [ɔ̃] et la lettre 'n' n'est pas articulée séparément",
+        "On prononce 'Bonn-jour'",
+        "Le 'o' se prononce comme dans 'pomme'"
+      ],
+      answer: 1,
+      explanation: "Dans 'bon', le 'on' forme un son nasal unique [ɔ̃] ; la langue ne touche pas le palais pour le 'n'."
+    }
+  ];
+
+  const expressionsData = [
+    {
+      title: "1. Excusez-moi de vous déranger",
+      meaning: "Formule polie pour aborder un inconnu ou interrompre quelqu'un.",
+      example: "« Excusez-moi de vous déranger, monsieur, savez-vous où se trouve la gare ? »",
+      img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "2. Je vous en prie",
+      meaning: "Réponse courtoise et élégante à un « Merci ».",
+      example: "« Merci beaucoup pour votre aide ! — Je vous en prie, c'est tout naturel. »",
+      img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "3. Je voudrais...",
+      meaning: "Utilisation du conditionnel pour faire une commande ou une demande en douceur.",
+      example: "« Bonjour ! Je voudrais un croissant et une baguette pas trop cuite, s'il vous plaît. »",
+      img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "4. Est-ce qu'on peut se tutoyer ?",
+      meaning: "Proposition pour passer du 'vous' au 'tu' une fois une relation instaurée.",
+      example: "« On travaille ensemble depuis une semaine maintenant, est-ce qu'on peut se tutoyer ? »",
+      img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "5. Merci de + Infinitif",
+      meaning: "Formule professionnelle pour demander poliment une action par écrit.",
+      example: "« Merci de bien vouloir me confirmer votre présence avant vendredi. »",
+      img: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "6. C'est la douche froide",
+      meaning: "Subir une grande déception ou une réaction rejetante inattendue.",
+      example: "« Je pensais avoir réussi mon entretien, mais leur refus a été une vraie douche froide. »",
+      img: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "7. Avoir de l'assurance",
+      meaning: "Montrer une confiance en soi calme et respectueuse.",
+      example: "« Elle a présenté son projet avec beaucoup d'assurance face aux clients. »",
+      img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "8. Être à l'étroit",
+      meaning: "Manquer d'espace physique dans un lieu.",
+      example: "« Dans ce petit café parisien, nous étions un peu à l'étroit mais l'ambiance était sympa. »",
+      img: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "9. Bon fin de journée / Bonne soirée",
+      meaning: "Formules de prise de congé en fin d'après-midi ou en soirée.",
+      example: "« Merci pour votre travail aujourd'hui ! Bonne soirée et à demain. »",
+      img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "10. Le mot magique",
+      meaning: "Expression souvent rappelée aux enfants (et adultes) pour 'S'il vous plaît'.",
+      example: "« Tu veux un biscuit ? N'oublie pas le mot magique ! — S'il te plaît, maman ! »",
+      img: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
+  // Render Quiz
+  const quizContainer = document.getElementById('quiz-container');
+  let currentCategory = "";
+
+  quizData.forEach((q, index) => {
+    if (q.category !== currentCategory) {
+      currentCategory = q.category;
+      const catHeading = document.createElement('div');
+      catHeading.className = 'category-header';
+      catHeading.innerText = currentCategory;
+      quizContainer.appendChild(catHeading);
+    }
+
+    const card = document.createElement('div');
+    card.className = 'question-card';
+
+    const qText = document.createElement('div');
+    qText.className = 'question-text';
+    qText.innerText = q.question;
+    card.appendChild(qText);
+
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'options';
+
+    const expDiv = document.createElement('div');
+    expDiv.className = 'explanation';
+
+    q.options.forEach((opt, optIdx) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerText = opt;
+      btn.onclick = () => selectOption(index, optIdx, btn, expDiv, optionsDiv);
+      optionsDiv.appendChild(btn);
+    });
+
+    card.appendChild(optionsDiv);
+    card.appendChild(expDiv);
+    quizContainer.appendChild(card);
+  });
+
+  function selectOption(qIdx, selectedOptIdx, clickedBtn, expDiv, optionsDiv) {
+    const q = quizData[qIdx];
+    const buttons = optionsDiv.querySelectorAll('.option-btn');
+
+    // Désactiver tous les boutons de cette question
+    buttons.forEach(btn => btn.disabled = true);
+
+    if (selectedOptIdx === q.answer) {
+      clickedBtn.classList.add('correct');
+      expDiv.classList.add('show', 'correct-exp');
+      expDiv.innerHTML = `<strong>Correct !</strong> ${q.explanation}`;
+    } else {
+      clickedBtn.classList.add('incorrect');
+      buttons[q.answer].classList.add('correct');
+      expDiv.classList.add('show', 'incorrect-exp');
+      expDiv.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+    }
+  }
+
+  // Render Expressions
+  const exprContainer = document.getElementById('expressions-container');
+  expressionsData.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'expr-card';
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" class="expr-img" loading="lazy">
+      <div class="expr-body">
+        <div>
+          <div class="expr-title">${item.title}</div>
+          <div class="expr-meaning">${item.meaning}</div>
+        </div>
+        <div class="expr-example">${item.example}</div>
+      </div>
+    `;
+    exprContainer.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

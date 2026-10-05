@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slow French - Conversation avec Nelly et Manon</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --error: #dc2626;
+      --error-bg: #fef2f2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    /* Video Container */
+    .video-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* QCM Styles */
+    .quiz-section {
+      margin-bottom: 50px;
+    }
+
+    .quiz-category {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .category-header {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .question-card {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .question-card:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:hover:not([disabled]) {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn.correct {
+      background-color: var(--success-bg) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+      font-weight: bold;
+    }
+
+    .option-btn.wrong {
+      background-color: var(--error-bg) !important;
+      border-color: var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    .explanation {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .explanation.correct-exp {
+      background: var(--success-bg);
+      color: #14532d;
+      border-left: 4px solid var(--success);
+    }
+
+    .explanation.wrong-exp {
+      background: var(--error-bg);
+      color: #7f1d1d;
+      border-left: 4px solid var(--error);
+    }
+
+    /* Expressions Section */
+    .expressions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .expressions-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .expr-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expr-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background-color: #cbd5e1;
+    }
+
+    .expr-body {
+      padding: 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .expr-title {
+      font-size: 1.15rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .expr-translation {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2563eb;
+      background: #eff6ff;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      align-self: flex-start;
+    }
+
+    .expr-meaning {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .expr-example {
+      background: var(--bg);
+      padding: 10px;
+      border-radius: 6px;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-left: 3px solid var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🇫🇷 Français avec Nelly & Manon</h1>
+    <p>Slow French pour débutants – Exercices & Expressions de la conversation</p>
+  </header>
+
+  <!-- Section Vidéo YouTube -->
+  <section class="video-section">
+    <div class="video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/e_9R40bGGtA" 
+        title="Une vraie conversation en français | Slow French pour débutants" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Section QCM -->
+  <section class="quiz-section">
+    <h2 class="section-title">📝 Questionnaire de compréhension & langue</h2>
+    <div id="quiz-container"></div>
+  </section>
+
+  <!-- Section Expressions -->
+  <section class="expressions-section">
+    <h2 class="section-title">💡 10 Expressions clés de la vidéo</h2>
+    <div class="expressions-grid" id="expressions-container"></div>
+  </section>
+</div>
+
+<script>
+// Données du QCM (5 Qs par catégorie)
+const quizData = [
+  {
+    category: "Compréhension globale & Détaillée",
+    icon: "💬",
+    questions: [
+      {
+        q: "Quel est le lien de parenté entre Nelly et Manon ?",
+        options: [
+          "Elles sont sœurs",
+          "Manon est la belle-sœur de Nelly (la copine de son frère)",
+          "Elles sont cousines",
+          "Elles sont collègues de travail"
+        ],
+        answer: 1,
+        explanation: "Manon explique au début de la vidéo qu'elle est la copine du frère de Nelly, ce qui fait d'elle sa belle-sœur."
+      },
+      {
+        q: "Où Manon est-elle partie en vacances pendant l'été ?",
+        options: [
+          "Au Japon",
+          "À Malte pendant 3 jours",
+          "En Italie dans les Dolomites en van",
+          "En Belgique pour visiter Bruxelles"
+        ],
+        answer: 2,
+        explanation: "Manon est partie deux semaines en Italie dans les Dolomites en van avec son copain."
+      },
+      {
+        q: "Pourquoi Nelly s'est-elle rendue dans le sud de la France cet été ?",
+        options: [
+          "Pour faire un stage de batterie et un concert",
+          "Pour acheter du fromage et du vin",
+          "Pour visiter sa famille à Toulouse",
+          "Pour enseigner le français dans une école"
+        ],
+        answer: 0,
+        explanation: "Nelly pratique la batterie dans un groupe et a fait un stage de 2 semaines suivi d'un concert sur la place d'un village."
+      },
+      {
+        q: "Quelle opinion partagent Nelly et Manon à propos des frites ?",
+        options: [
+          "Les frites belges sont incontestablement les meilleures",
+          "Les frites du Sud-Ouest cuites à la graisse de canard sont meilleures",
+          "Elles n'aiment pas du tout les frites",
+          "Les frites canadiennes sont les meilleures du monde"
+        ],
+        answer: 1,
+        explanation: "Elles disent en riant que les frites du Sud-Ouest cuites à la graisse de canard dépassent les frites belges."
+      },
+      {
+        q: "Quel pays Manon aimerait-elle visiter en premier en Amérique du Sud ?",
+        options: [
+          "Le Brésil",
+          "L'Argentine",
+          "La Bolivie",
+          "Le Pérou"
+        ],
+        answer: 2,
+        explanation: "Manon précise que si elle devait choisir un pays en premier en Amérique du Sud, ce serait la Bolivie."
+      }
+    ]
+  },
+  {
+    category: "Vocabulaire & Expressions",
+    icon: "📚",
+    questions: [
+      {
+        q: "Que signifie l'expression « Être une éponge à accent » ?",
+        options: [
+          "Nettoyer son accent avec de l'eau",
+          "Imiter et adopter très facilement l'accent des gens qu'on côtoie",
+          "Parler avec un accent difficile à comprendre",
+          "Ne jamais changer sa façon de parler"
+        ],
+        answer: 1,
+        explanation: "Comme une éponge absorbe l'eau, une personne 'éponge à accent' s'imprègne immédiatement des intonations locales."
+      },
+      {
+        q: "Qu'est-ce qu'un paysage « à couper le souffle » ?",
+        options: [
+          "Un endroit très pollué où on ne peut plus respirer",
+          "Un paysage très laid",
+          "Un paysage d'une beauté extraordinaire qui émerveille",
+          "Un endroit où il fait très froid"
+        ],
+        answer: 2,
+        explanation: "L'expression désigne une vue magnifique qui provoque une émotion d'admiration coupant la respiration."
+      },
+      {
+        q: "Que signifie « avoir un coup de cœur » pour un lieu ?",
+        options: [
+          "Avoir un problème médical",
+          "Ressentir un enthousiasme immédiat et un grand amour pour ce lieu",
+          "Avoir peur pendant un voyage",
+          "Détester un endroit dès l'arrivée"
+        ],
+        answer: 1,
+        explanation: "Un coup de cœur est un coup de foudre ou une très forte appréciation spontanée."
+      },
+      {
+        q: "Dans l'expression « s'attirer les foudres », que signifie-t-elle ?",
+        options: [
+          "Provoquer la colère ou de fortes critiques de la part des gens",
+          "Recevoir un éclair pendant un orage",
+          "Attirer l'attention de manière très positive",
+          "Avoir de la chance dans un débat"
+        ],
+        answer: 0,
+        explanation: "S'attirer les foudres signifie s'exposer à la désapprobation vive ou à la colère des autres."
+      },
+      {
+        q: "Que signifie le verbe familier « saigner » un vêtement/un objet (ex: 'saigner une tenue') ?",
+        options: [
+          "Tacher le vêtement avec du sang",
+          "Le porter ou l'utiliser intensivement et très souvent",
+          "Le couper avec des ciseaux",
+          "Le vendre à un prix très bas"
+        ],
+        answer: 1,
+        explanation: "En argot jeune, 'saigner' un objet ou un vêtement signifie l'utiliser/le porter au maximum jusqu'à l'user."
+      }
+    ]
+  },
+  {
+    category: "Grammaire & Structures",
+    icon: "⚙️",
+    questions: [
+      {
+        q: "Dans la phrase « C'est difficile à accepter pour moi », quelle fonction a la préposition « à » ?",
+        options: [
+          "Elle indique un lieu géographique",
+          "Elle introduit l'infinitif complément de l'adjectif 'difficile'",
+          "Elle remplace un pronom COD",
+          "Elle exprime la possession"
+        ],
+        answer: 1,
+        explanation: "L'adjectif 'difficile' suivi d'un infinitif passif/impersonnel se construit avec la préposition 'à' (ex: c'est difficile à faire)."
+      },
+      {
+        q: "« Nous sommes partis en van ». Pourquoi emploie-t-on l'auxiliaire « être » ?",
+        options: [
+          "Parce que 'partir' est un verbe de changement de lieu au passé composé",
+          "C'est une faute de grammaire, il faut dire 'nous avons parti'",
+          "Parce que le sujet est masculin pluriel",
+          "Parce que le mot 'van' est masculin"
+        ],
+        answer: 0,
+        explanation: "Le verbe 'partir' se conjugue toujours avec l'auxiliaire 'être' aux temps composés."
+      },
+      {
+        q: "Dans « Je n'y suis jamais allée », à quoi renvoie le pronom « y » ?",
+        options: [
+          "À la personne Manon",
+          "Au lieu/destination dont elles parlent (les Dolomites)",
+          "Au van de vacances",
+          "À la période de l'été"
+        ],
+        answer: 1,
+        explanation: "Le pronom adverbial 'y' remplace un complément de lieu précédé de prépositions comme 'à', 'dans', 'en'."
+      },
+      {
+        q: "Dans la phrase « Si je devais choisir..., j'irai/j'irais au Japon », quel mode/temps faut-il employer après l'imparfait dans la conditionnelle ?",
+        options: [
+          "Subjonctif présent",
+          "Futur simple",
+          "Conditionnel présent (j'irais)",
+          "Indicatif présent"
+        ],
+        answer: 2,
+        explanation: "La structure de l'hypothèse au présent/futur improbable est : Si + Imparfait -> Conditionnel présent."
+      },
+      {
+        q: "Identifiez l'expression négative restrictive dans : « Tu n'as eu le droit qu'à un pays ».",
+        options: [
+          "Ne ... pas",
+          "Ne ... que (restriction signifiant 'seulement')",
+          "Ne ... jamais",
+          "Ne ... personne"
+        ],
+        answer: 1,
+        explanation: "La tournure 'ne ... que' n'est pas une négation totale mais une restriction synonyme de 'seulement'."
+      }
+    ]
+  },
+  {
+    category: "Prononciation & Phonétique",
+    icon: "🗣️",
+    questions: [
+      {
+        q: "Pourquoi le format de la vidéo est-il appelé « Slow French » ?",
+        options: [
+          "Car la vidéo est enregistrée au ralenti avec un logiciel",
+          "Car les locutrices articulent bien et adoptent un débit de parole modéré",
+          "Car elles parlent uniquement de sujets ennuyeux",
+          "Car elles utilisent un vieux dialecte français"
+        ],
+        answer: 1,
+        explanation: "Le Slow French consiste à ralentir consciemment le débit naturel et bien détacher les syllabes pour aider les apprenants."
+      },
+      {
+        q: "Comment est prononcée la ville de Toulouse par Nelly et Manon ?",
+        options: [
+          "Avec une élision du 'e' final /tuluz/",
+          "En prononçant le 's' comme un 'ss' /tuluss/",
+          "En prononçant chaque lettre séparément",
+          "En muant la lettre 'T'"
+        ],
+        answer: 0,
+        explanation: "En français standard et du Sud, le 'e' final est muet, donnant la prononciation /tuluz/."
+      },
+      {
+        q: "Dans le langage parlé familier, comment est souvent raccourcie la négation « Je n'ai pas » ?",
+        options: [
+          "J'ai pas (suppression du 'ne')",
+          "Je n'ai",
+          "N'ai pas",
+          "Pas ai"
+        ],
+        answer: 0,
+        explanation: "À l'oral familier/informel en France, la particule 'ne' disparaît quasi systématiquement."
+      },
+      {
+        q: "Dans le mot « Belgique », quelle est la consonne finale entendue ?",
+        options: [
+          "Le son /g/",
+          "Le son /k/",
+          "Le son /z/",
+          "Le son /s/"
+        ],
+        answer: 1,
+        explanation: "Le groupe 'que' en fin de mot se prononce /k/ (/bɛlʒik/)."
+      },
+      {
+        q: "Comment prononce-t-on la liaison dans « un grand effort » ?",
+        options: [
+          "On ne fait pas de liaison",
+          "Comme un son 'd' : un gran-d-effort /gʁɑ̃defɔʁ/",
+          "Comme un son 't' : un gran-t-effort /gʁɑ̃tɛfɔʁ/",
+          "Comme un son 'z'"
+        ],
+        answer: 2,
+        explanation: "La liaison avec l'adjectif 'grand' suivi d'une voyelle se transforme phonétiquement en son /t/ à l'oral soutenu/soigné."
+      }
+    ]
+  }
+];
+
+// Données des 10 Expressions avec images et traductions en anglais
+const expressionsData = [
+  {
+    title: "1. Être une éponge à accent",
+    translation: "🇬🇧 To absorb accents like a sponge",
+    meaning: "Adopter très vite l'accent des personnes avec qui l'on parle.",
+    example: "Dès qu'elle passe trois jours à Marseille, elle devient une vraie éponge à accent !",
+    img: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "2. À couper le souffle",
+    translation: "🇬🇧 Breathtaking / Breathtakingly beautiful",
+    meaning: "Extrêmement beau, spectaculaire, impressionnant.",
+    example: "Depuis le sommet de la montagne, la vue sur la vallée était à couper le souffle.",
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "3. Avoir un coup de cœur",
+    translation: "🇬🇧 To fall in love with / To have a crush on (a place, item)",
+    meaning: "Tomber sous le charme immédiat de quelque chose ou quelqu'un.",
+    example: "J'ai eu un vrai coup de cœur pour ce petit village bordé par la mer.",
+    img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "4. S'attirer les foudres",
+    translation: "🇬🇧 To incur the wrath of / To bring heat upon oneself",
+    meaning: "Provoquer la colère ou les critiques vives des autres.",
+    example: "En critiquant le plat traditionnel du chef, il s'est attiré les foudres de toute la table.",
+    img: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "5. Se calquer sur quelqu'un",
+    translation: "🇬🇧 To mirror / To model oneself on someone",
+    meaning: "Imiter le comportement, l'attitude ou le langage d'une personne.",
+    example: "Dans une nouvelle entreprise, on se calque souvent sur l'attitude de ses collègues.",
+    img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "6. Se perfectionner",
+    translation: "🇬🇧 To hone one's skills / To perfect oneself",
+    meaning: "Améliorer ses compétences dans un domaine précis.",
+    example: "Paul suit des cours du soir pour se perfectionner en informatique.",
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "7. Quitte à y être",
+    translation: "🇬🇧 As long as we're at it / While we're here",
+    meaning: "Puisque l'on est déjà engagé dans une situation/un endroit, en profiter pour faire plus.",
+    example: "Nous sommes à Paris pour le travail, quitte à y être, restons ce week-end pour visiter le Louvre !",
+    img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "8. Se régaler",
+    translation: "🇬🇧 To thoroughly enjoy (food/a moment) / To feast",
+    meaning: "Prendre un plaisir énorme à manger quelque chose (ou apprécier un moment).",
+    example: "Nous nous sommes régalés avec cette tarte aux pommes maison !",
+    img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "9. Saigner un vêtement (Argot)",
+    translation: "🇬🇧 To wear something to death / To wear non-stop",
+    meaning: "Porter très souvent un vêtement au point de l'user.",
+    example: "J'ai saigné ce blouson tout l'hiver tellement je le trouvais confortable !",
+    img: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    title: "10. Faire un tunnel (Familier)",
+    translation: "🇬🇧 To ramble on / To hold a monologue",
+    meaning: "Parler sans s'arrêter pendant un long moment au point de monopoliser la parole.",
+    example: "Désolé, j'ai fait un tunnel sur l'histoire de la F1, je vous laisse parler !",
+    img: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"
+  }
+];
+
+// Génération du QCM dans le DOM
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  
+  quizData.forEach((cat, catIdx) => {
+    const catDiv = document.createElement('div');
+    catDiv.className = 'quiz-category';
+    
+    let html = `<div class="category-header"><span>${cat.icon}</span> <span>${cat.category}</span></div>`;
+    
+    cat.questions.forEach((q, qIdx) => {
+      const qId = `q_${catIdx}_${qIdx}`;
+      html += `
+        <div class="question-card" id="card_${qId}">
+          <div class="question-text">${qIdx + 1}. ${q.q}</div>
+          <div class="options-grid">
+            ${q.options.map((opt, optIdx) => `
+              <button class="option-btn" onclick="checkAnswer(${catIdx}, ${qIdx},${optIdx})">
+                ${String.fromCharCode(65 + optIdx)}.${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div class="explanation" id="exp_${qId}"></div>
+        </div>
+      `;
+    });
+    
+    catDiv.innerHTML = html;
+    container.appendChild(catDiv);
+  });
+}
+
+// Fonction de vérification de réponse
+function checkAnswer(catIdx, qIdx, selectedOpt) {
+  const qData = quizData[catIdx].questions[qIdx];
+  const qId = `q_${catIdx}_${qIdx}`;
+  const card = document.getElementById(`card_${qId}`);
+  const buttons = card.querySelectorAll('.option-btn');
+  const expDiv = document.getElementById(`exp_${qId}`);
+  
+  // Désactiver tous les boutons de cette question
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === qData.answer) {
+      btn.classList.add('correct');
+    } else if (idx === selectedOpt) {
+      btn.classList.add('wrong');
+    }
+  });
+
+  // Affichage explicatif
+  expDiv.classList.add('show');
+  if (selectedOpt === qData.answer) {
+    expDiv.classList.add('correct-exp');
+    expDiv.innerHTML = `<strong>Bravo !</strong> ${qData.explanation}`;
+  } else {
+    expDiv.classList.add('wrong-exp');
+    expDiv.innerHTML = `<strong>Dommage !</strong> ${qData.explanation}`;
+  }
+}
+
+// Génération des fiches d'expressions
+function renderExpressions() {
+  const container = document.getElementById('expressions-container');
+  
+  expressionsData.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'expr-card';
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" class="expr-img" loading="lazy">
+      <div class="expr-body">
+        <div class="expr-title">${item.title}</div>
+        <div class="expr-translation">${item.translation}</div>
+        <div class="expr-meaning">${item.meaning}</div>
+        <div class="expr-example">« ${item.example} »</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded', () => {
+  renderQuiz();
+  renderExpressions();
+});
+</script>
+
+</body>
+</html>

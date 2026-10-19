@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre le français - HugoDécrypte : "Un échec total."</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        frenchBlue: '#002654',
+                        frenchRed: '#ED2939',
+                        brandBg: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .accordion-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .option-btn {
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-red-500 flex items-center justify-center text-white font-black text-xl shadow-md">
+                    FR
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 leading-tight">Apprendre le français</h1>
+                    <p class="text-xs text-slate-500">avec HugoDécrypte • Actualité & Langue</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+                    <i class="fa-solid me-1.5 fa-graduation-cap"></i> Niveau Intermédiaire / Avancé (B1 - C1)
+                </span>
+                <a href="#qcm-section" class="hidden sm:inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition">
+                    Accéder au QCM
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Banner / Intro -->
+        <section class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="max-w-3xl relative z-10 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-blue-200 text-xs font-medium backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+                    Vidéo d'actualité authentique
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                    "Un échec total." — Analyse d'actualité
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Développez votre compréhension orale, votre vocabulaire politique et votre maîtrise des expressions idiomatiques françaises en analysant un bulletin d'actualités d'HugoDécrypte.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2 text-xs sm:text-sm text-slate-300">
+                    <div class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-blue-400"></i> ~14 minutes</div>
+                    <div class="flex items-center gap-1.5"><i class="fa-regular fa-circle-question text-emerald-400"></i> 20 questions interactives</div>
+                    <div class="flex items-center gap-1.5"><i class="fa-solid fa-book-open text-purple-400"></i> 10 expressions clés</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video & Resume Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Video Player -->
+            <div class="lg:col-span-7 space-y-4">
+                <div class="bg-white p-3 rounded-2xl shadow-md border border-slate-200">
+                    <div class="relative w-full overflow-hidden rounded-xl bg-black aspect-video shadow-inner">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full border-0" 
+                            src="https://www.youtube.com/embed/IhkZpYAUUxc" 
+                            title="HugoDécrypte - Un échec total" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between text-xs text-slate-500 px-2">
+                    <span>Source : <strong class="text-slate-700">HugoDécrypte (Hugo Travers)</strong></span>
+                    <span>Thèmes : Politique, International, Sport</span>
+                </div>
+            </div>
+
+            <!-- Resume / Accordion -->
+            <div class="lg:col-span-5 bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-4">
+                <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
+                    <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-blue-600"></i> Résumé de la vidéo
+                    </h3>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">3 Parties</span>
+                </div>
+
+                <div class="space-y-3" id="accordion-group">
+                    
+                    <!-- Item 1 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(1)" class="w-full text-left p-4 bg-slate-50 hover:bg-slate-100 font-semibold text-slate-800 text-sm flex items-center justify-between transition">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                1. Événements du 17 Octobre (0:26 - 8:36)
+                            </span>
+                            <i id="acc-icon-1" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="acc-content-1" class="accordion-content px-4 bg-white text-xs sm:text-sm text-slate-600 space-y-2 py-0">
+                            <ul class="list-disc list-inside space-y-1.5 py-3">
+                                <li><strong>Contexte :</strong> Manifestations pour le pouvoir d'achat et l'éducation, accompagnées de violences et pillages (&gt;3 000 commerces).</li>
+                                <li><strong>Réaction gouvernementale :</strong> Démission refusée de Laurent Nuñez (Intérieur) par Emmanuel Macron. Critiques sur la gestion des « ultra-gauches ».</li>
+                                <li><strong>Mesures :</strong> Couvre-feux locaux mis en place (Paris, Nice).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(2)" class="w-full text-left p-4 bg-slate-50 hover:bg-slate-100 font-semibold text-slate-800 text-sm flex items-center justify-between transition">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                2. Actualité Internationale (8:36 - 13:44)
+                            </span>
+                            <i id="acc-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="acc-content-2" class="accordion-content px-4 bg-white text-xs sm:text-sm text-slate-600 space-y-2 py-0">
+                            <ul class="list-disc list-inside space-y-1.5 py-3">
+                                <li><strong>Tournée d'E. Macron :</strong> Visite au Moyen-Orient (Koweït, Émirats, Bahreïn, Qatar) pour l'approvisionnement pétrolier.</li>
+                                <li><strong>Drame migratoire :</strong> 12 morts en mer Égée près de Lesbos et Samos.</li>
+                                <li><strong>Cisjordanie :</strong> Convoi diplomatique attaqué par des colonistes.</li>
+                                <li><strong>Ukraine & COP17 :</strong> Frappes à Kyiv ; ouverture de la COP17 Biodiversité en Arménie.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="border border-slate-200 rounded-xl overflow-hidden">
+                        <button onclick="toggleAccordion(3)" class="w-full text-left p-4 bg-slate-50 hover:bg-slate-100 font-semibold text-slate-800 text-sm flex items-center justify-between transition">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                3. Sport (13:44 - 14:02)
+                            </span>
+                            <i id="acc-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="acc-content-3" class="accordion-content px-4 bg-white text-xs sm:text-sm text-slate-600 space-y-2 py-0">
+                            <div class="py-3 space-y-1">
+                                <p><strong>Félix Lebrun</strong> sacré champion d'Europe de tennis de table, succédant ainsi à son frère Alexis Lebrun.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="qcm-section" class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-8">
+            
+            <!-- Quiz Header & Progress -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-100 pb-6">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">Test de connaissance</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">QCM d'apprentissage (20 questions)</h2>
+                    <p class="text-slate-500 text-sm mt-1">Évaluez votre compréhension globale, votre vocabulaire, votre grammaire et votre phonétique.</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 min-w-[240px] flex flex-col justify-center">
+                    <div class="flex justify-between items-center text-xs font-semibold mb-1">
+                        <span class="text-slate-600">Votre score :</span>
+                        <span id="score-text" class="text-blue-700 font-bold text-sm">0 / 20</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                        <div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Category Tabs Filter -->
+            <div class="flex flex-wrap gap-2 border-b border-slate-100 pb-4" id="quiz-tabs">
+                <button onclick="filterQuiz('all')" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-900 text-white transition">Toutes les questions (20)</button>
+                <button onclick="filterQuiz('comprehension')" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Compréhension (5)</button>
+                <button onclick="filterQuiz('vocabulaire')" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Vocabulaire (5)</button>
+                <button onclick="filterQuiz('grammaire')" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Grammaire (5)</button>
+                <button onclick="filterQuiz('prononciation')" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Prononciation (5)</button>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="space-y-8">
+                <!-- Generated dynamically via JS -->
+            </div>
+
+        </section>
+
+        <!-- Expressions Key Section -->
+        <section class="space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-100">Vocabulaire contextuel</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">10 Expressions clés & Pratiques</h2>
+                    <p class="text-slate-500 text-sm mt-1">Apprenez à réutiliser ces tournures de la vidéo dans des situations réelles du quotidien.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="expressions-container">
+                <!-- Dynamically injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
+            <p>© 2026 Module d'apprentissage du français — Inspiré des contenus informatifs d'HugoDécrypte.</p>
+            <p class="text-slate-500">Conçu pour les étudiants en FLE (Français Langue Étrangère). Exercices basés sur des vidéos publiques.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- 1. ACCORDION SYSTEM ---
+        function toggleAccordion(id) {
+            const content = document.getElementById(`acc-content-${id}`);
+            const icon = document.getElementById(`acc-icon-${id}`);
+            const isActive = content.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.accordion-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('[id^="acc-icon-"]').forEach(el => el.classList.remove('rotate-180'));
+
+            if (!isActive) {
+                content.classList.add('active');
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // --- 2. QCM DATA & LOGIC ---
+        const questionsData = [
+            // COMPREHENSION (5)
+            {
+                id: 1,
+                category: 'comprehension',
+                catLabel: 'Compréhension',
+                badgeBg: 'bg-blue-100 text-blue-800',
+                question: "Quel événement concernant le ministre de l'Intérieur Laurent Nuñez a suivi la journée du 17 octobre ?",
+                options: [
+                    "A. Il a été limogé immédiatement par le président Emmanuel Macron.",
+                    "B. Il a proposé sa démission, mais celle-ci a été refusée par le président.",
+                    "C. Il a annoncé sa retraite politique définitive.",
+                    "D. Il a été promu au poste de Premier ministre."
+                ],
+                correct: 1,
+                explanation: "Laurent Nuñez a reconnu un manque d'anticipation des troubles et a soumis sa démission, mais le président Emmanuel Macron l'a refusée."
+            },
+            {
+                id: 2,
+                category: 'comprehension',
+                catLabel: 'Compréhension',
+                badgeBg: 'bg-blue-100 text-blue-800',
+                question: "Quelle mesure de sécurité restrictive a été instaurée dans plusieurs grandes villes comme Paris ou Nice ?",
+                options: [
+                    "A. L'état de siège militaire.",
+                    "B. La fermeture complète des frontières nationales.",
+                    "C. Des couvre-feux localisés.",
+                    "D. La coupure générale du réseau Internet."
+                ],
+                correct: 2,
+                explanation: "Face aux pillages et débordements, des couvre-feux ciblés et localisés ont été décidés dans certaines municipalités."
+            },
+            {
+                id: 3,
+                category: 'comprehension',
+                catLabel: 'Compréhension',
+                badgeBg: 'bg-blue-100 text-blue-800',
+                question: "Quel est le but principal de la tournée d'Emmanuel Macron dans les pays du Golfe ?",
+                options: [
+                    "A. Assister à la finale du championnat européen de tennis de table.",
+                    "B. Négocier des accords de sécurisation d'approvisionnement en pétrole et gazole.",
+                    "C. Participer au sommet annuel de la COP17 en Arménie.",
+                    "D. Signer des traités exclusivement culturels et linguistiques."
+                ],
+                correct: 1,
+                explanation: "Le président français s'est rendu au Koweït, aux Émirats, au Bahreïn et au Qatar pour sécuriser l'approvisionnement énergétique dans un contexte d'instabilité globale."
+            },
+            {
+                id: 4,
+                category: 'comprehension',
+                catLabel: 'Compréhension',
+                badgeBg: 'bg-blue-100 text-blue-800',
+                question: "Où se déroule la conférence sur la biodiversité (COP17) mentionnée dans le bulletin ?",
+                options: [
+                    "A. En France (Paris)",
+                    "B. En Grèce (Lesbos)",
+                    "C. En Arménie",
+                    "D. Au Qatar"
+                ],
+                correct: 2,
+                explanation: "La 17e conférence mondiale sur la biodiversité (COP17) s'est ouverte en Arménie."
+            },
+            {
+                id: 5,
+                category: 'comprehension',
+                catLabel: 'Compréhension',
+                badgeBg: 'bg-blue-100 text-blue-800',
+                question: "Quel titre sportif a été obtenu par Félix Lebrun ?",
+                options: [
+                    "A. Champion de France de football.",
+                    "B. Champion d'Europe de tennis de table.",
+                    "C. Champion du monde d'athlétisme.",
+                    "D. Médaillé d'or olympique en natation."
+                ],
+                correct: 1,
+                explanation: "Félix Lebrun a remporté le titre de champion d'Europe en tennis de table, succédant à son frère Alexis."
+            },
+
+            // VOCABULAIRE (5)
+            {
+                id: 6,
+                category: 'vocabulaire',
+                catLabel: 'Vocabulaire',
+                badgeBg: 'bg-emerald-100 text-emerald-800',
+                question: "Que signifie la formule « essuyer un échec » ?",
+                options: [
+                    "A. Nettoyer une table après une défaite.",
+                    "B. Subir ou connaître une défaite / un revers.",
+                    "C. Ignorer poliment un problème grave.",
+                    "D. Fêter une réussite inattendue."
+                ],
+                correct: 1,
+                explanation: "« Essuyer un échec » est une locution verbale signifiant subir un échec, être confronté à un résultat négatif malgré des efforts."
+            },
+            {
+                id: 7,
+                category: 'vocabulaire',
+                catLabel: 'Vocabulaire',
+                badgeBg: 'bg-emerald-100 text-emerald-800',
+                question: "Qu'est-ce qu'un « couvre-feu » dans le contexte politique et sécuritaire ?",
+                options: [
+                    "A. Un dispositif d'extinction automatique d'incendie.",
+                    "B. Une interdiction temporaire pour les citoyens de circuler dans les rues à partir d'une certaine heure.",
+                    "C. Une baisse obligatoire de la température de chauffage domestique.",
+                    "D. Une pause obligatoire accordée aux commerçants pendant la journée."
+                ],
+                correct: 1,
+                explanation: "Le couvre-feu est une mesure réglementaire interdisant à la population de se déplacer hors des domiciles à certaines heures de la nuit."
+            },
+            {
+                id: 8,
+                category: 'vocabulaire',
+                catLabel: 'Vocabulaire',
+                badgeBg: 'bg-emerald-100 text-emerald-800',
+                question: "Dans la phrase « Un manque d'anticipation », que veut dire le verbe « anticiper » ?",
+                options: [
+                    "A. Oublier délibérément les événements passés.",
+                    "B. Prévoir, imaginer ou organiser à l'avance ce qui va se produire.",
+                    "C. Réagir uniquement sous le coup de la panique.",
+                    "D. Annuler une décision au dernier moment."
+                ],
+                correct: 1,
+                explanation: "« Anticiper » signifie pressentir ou prévoir ce qui doit arriver et agir en conséquence avant que cela ne se produise."
+            },
+            {
+                id: 9,
+                category: 'vocabulaire',
+                catLabel: 'Vocabulaire',
+                badgeBg: 'bg-emerald-100 text-emerald-800',
+                question: "Quel est le synonyme le plus proche du mot « pillage » (ex: le pillage des commerces) ?",
+                options: [
+                    "A. Le nettoyage minutieux.",
+                    "B. Le sac, le vol généralisé et la destruction de biens.",
+                    "C. La rénovation urbaine.",
+                    "D. L'inauguration festive."
+                ],
+                correct: 1,
+                explanation: "Un « pillage » consiste à dévaliser, voler ou détruire les biens d'un lieu (magasin, ville) de manière violente ou désordonnée."
+            },
+            {
+                id: 10,
+                category: 'vocabulaire',
+                catLabel: 'Vocabulaire',
+                badgeBg: 'bg-emerald-100 text-emerald-800',
+                question: "Que signifie l'expression « succéder à quelqu'un » (ex: Félix succède à Alexis) ?",
+                options: [
+                    "A. Remplacer ou prendre la suite de quelqu'un dans une fonction ou un titre.",
+                    "B. Échouer juste derrière cette personne.",
+                    "C. Aider quelqu'un à s'entraîner au quotidien.",
+                    "D. Contester publiquement la victoire de quelqu'un."
+                ],
+                correct: 0,
+                explanation: "« Succéder à quelqu'un » veut dire venir juste après lui, prendre son héritage, sa place ou son titre."
+            },
+
+            // GRAMMAIRE (5)
+            {
+                id: 11,
+                category: 'grammaire',
+                catLabel: 'Grammaire',
+                badgeBg: 'bg-purple-100 text-purple-800',
+                question: "Dans la phrase « Le ministre a proposé sa démission, QUE le président a refusée », quelle est la nature et la fonction de « QUE » ?",
+                options: [
+                    "A. Une conjonction de subordination introduisant un but.",
+                    "B. Un pronom relatif remplaçant « sa démission » et complément d'objet direct (COD) de « a refusée ».",
+                    "C. Un adjectif interrogatif.",
+                    "D. Un adverbe de quantité."
+                ],
+                correct: 1,
+                explanation: "« Que » est ici un pronom relatif relatif à l'antécédent « démission », COD placé avant le verbe, ce qui explique l'accord du participe passé « refusée » au féminin."
+            },
+            {
+                id: 12,
+                category: 'grammaire',
+                catLabel: 'Grammaire',
+                badgeBg: 'bg-purple-100 text-purple-800',
+                question: "Observez : « Bien que de nombreuses manifestations PACIFIQUES AIENT EU lieu... ». Quel mode verbal est utilisé après « bien que » ?",
+                options: [
+                    "A. L'indicatif présent.",
+                    "B. Le conditionnel passé.",
+                    "C. Le subjonctif passé.",
+                    "D. L'impératif."
+                ],
+                correct: 2,
+                explanation: "La locution conjonctive « bien que » exige toujours l'utilisation du mode subjonctif (« aient eu » est le subjonctif passé du verbe avoir)."
+            },
+            {
+                id: 13,
+                category: 'grammaire',
+                catLabel: 'Grammaire',
+                badgeBg: 'bg-purple-100 text-purple-800',
+                question: "Quelle forme passive correspond exactement à la phrase active : « Les émeutiers ont pille plus de 3 000 commerces » ?",
+                options: [
+                    "A. Plus de 3 000 commerces ont été pillés par les émeutiers.",
+                    "B. Plus de 3 000 commerces sont pillés par les émeutiers.",
+                    "C. Plus de 3 000 commerces seront pillés par les émeutiers.",
+                    "D. Plus de 3 000 commerces étaient pillés par les émeutiers."
+                ],
+                correct: 0,
+                explanation: "Au passé composé passif : auxiliaire « être » au passé composé (« ont été ») + participe passé accordé (« pillés » au masculin pluriel)."
+            },
+            {
+                id: 14,
+                category: 'grammaire',
+                catLabel: 'Grammaire',
+                badgeBg: 'bg-purple-100 text-purple-800',
+                question: "Lequel de ces connecteurs logiques exprime l'opposition ou la concession dans un discours d'actualité ?",
+                options: [
+                    "A. C'est pourquoi",
+                    "B. En revanche / Néanmoins",
+                    "C. Par conséquent",
+                    "D. Grâce à"
+                ],
+                correct: 1,
+                explanation: "« Néanmoins » et « En revanche » permettent d'introduire un fait opposé ou une nuance de concession."
+            },
+            {
+                id: 15,
+                category: 'grammaire',
+                catLabel: 'Grammaire',
+                badgeBg: 'bg-purple-100 text-purple-800',
+                question: "Choisissez l'accord correct du participe passé : « Les mesures qu'il a (mettre) en place sont strictes. »",
+                options: [
+                    "A. mis",
+                    "B. mise",
+                    "C. mises",
+                    "D. mits"
+                ],
+                correct: 2,
+                explanation: "Le COD est le pronom relatif « qu' » mis pour « les mesures » (féminin pluriel) situé avant l'auxiliaire avoir « a ». Le participe s'accorde donc : « mises »."
+            },
+
+            // PRONONCIATION (5)
+            {
+                id: 16,
+                category: 'prononciation',
+                catLabel: 'Prononciation & Phonétique',
+                badgeBg: 'bg-amber-100 text-amber-800',
+                question: "Où doit-on réaliser obligatoirement une liaison orale dans la phrase : « Un échec total » ?",
+                options: [
+                    "A. Entre « échec » et « total » (/ɛʃɛk-tɔtal/).",
+                    "B. Entre l'article « Un » et le nom « échec » (/œ̃-neʃɛk/).",
+                    "C. Il est totalement interdit de faire la moindre liaison.",
+                    "D. Après le mot « total » uniquement."
+                ],
+                correct: 1,
+                explanation: "La liaison est obligatoire entre un déterminant indéfini unilatéral (« Un ») et un nom commençant par une voyelle (« échec »), se prononçant /œ̃.ne.ʃɛk/."
+            },
+            {
+                id: 17,
+                category: 'prononciation',
+                catLabel: 'Prononciation & Phonétique',
+                badgeBg: 'bg-amber-100 text-amber-800',
+                question: "Combien de voyelles nasales entend-on dans le mot « Anticipation » (/ɑ̃.ti.si.pa.sjɔ̃/) ?",
+                options: [
+                    "A. Une seule voyelle nasale.",
+                    "B. Deux voyelles nasales (l'initiale « an » [ɑ̃] et la finale « on » [ɔ̃]).",
+                    "C. Trois voyelles nasales.",
+                    "D. Aucune voyelle nasale."
+                ],
+                correct: 1,
+                explanation: "Le mot comprend 2 voyelles nasales : [ɑ̃] (« an » au début) et [ɔ̃] (« on » à la fin)."
+            },
+            {
+                id: 18,
+                category: 'prononciation',
+                catLabel: 'Prononciation & Phonétique',
+                badgeBg: 'bg-amber-100 text-amber-800',
+                question: "Comment se prononce la terminaison « -ent » dans le verbe « Les ministres reconnaisSENT » ?",
+                options: [
+                    "A. On prononce le son nasal /ɑ̃/ (comme dans 'vent').",
+                    "B. On prononce le son /ɛnt/ avec le t sonore.",
+                    "C. La terminaison de la 3e personne du pluriel est totalement muette.",
+                    "D. On prononce /o/."
+                ],
+                correct: 2,
+                explanation: "En français, la marque de 3e personne du pluriel « -ent » des verbes conjugués est totalement muette."
+            },
+            {
+                id: 19,
+                category: 'prononciation',
+                catLabel: 'Prononciation & Phonétique',
+                badgeBg: 'bg-amber-100 text-amber-800',
+                question: "Quelle est la bonne prononciation du patronyme « Nuñez » en français ?",
+                options: [
+                    "A. Le 'z' final est strictement muet.",
+                    "B. Le 'z' se prononce généralement comme un 's' ou un 'z' sonore (/nunjɛs/ ou /nunjɛz/).",
+                    "C. On prononce 'Nu-nek'.",
+                    "D. Le 'u' se prononce comme dans le mot anglais 'blue'."
+                ],
+                correct: 1,
+                explanation: "Pour les noms d'origine espagnole usités en français, le 'z' final est articulé (/nunjɛz/ ou /nunjɛs/)."
+            },
+            {
+                id: 20,
+                category: 'prononciation',
+                catLabel: 'Prononciation & Phonétique',
+                badgeBg: 'bg-amber-100 text-amber-800',
+                question: "Dans l'expression « Couvre-feu », quelle voyelle entend-on à la fin du mot « feu » ?",
+                options: [
+                    "A. La voyelle fermée /ø/ (comme dans 'deux' ou 'bleu').",
+                    "B. La voyelle nasale /œ̃/.",
+                    "C. La voyelle ouverte /a/.",
+                    "D. La voyelle /i/."
+                ],
+                correct: 0,
+                explanation: "Le mot « feu » se termine par la voyelle orale antérieure arrondie fermée [ø]."
+            }
+        ];
+
+        let userAnswers = {};
+        let score = 0;
+
+        function renderQuiz(filter = 'all') {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            const filteredQuestions = filter === 'all' 
+                ? questionsData 
+                : questionsData.filter(q => q.category === filter);
+
+            filteredQuestions.forEach((q, index) => {
+                const isAnswered = userAnswers.hasOwnProperty(q.id);
+                const selectedOption = userAnswers[q.id];
+
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 transition shadow-sm hover:shadow-md";
+                card.id = `q-card-${q.id}`;
+
+                let optionsHTML = '';
+                q.options.forEach((opt, optIndex) => {
+                    let btnStyle = "bg-white border-slate-200 text-slate-700 hover:border-slate-300";
+                    let iconHTML = '';
+
+                    if (isAnswered) {
+                        if (optIndex === q.correct) {
+                            btnStyle = "bg-emerald-50 border-emerald-500 text-emerald-900 font-semibold";
+                            iconHTML = `<i class="fa-solid fa-circle-check text-emerald-600 ml-auto text-lg"></i>`;
+                        } else if (optIndex === selectedOption) {
+                            btnStyle = "bg-red-50 border-red-400 text-red-900 font-semibold";
+                            iconHTML = `<i class="fa-solid fa-circle-xmark text-red-500 ml-auto text-lg"></i>`;
+                        } else {
+                            btnStyle = "bg-slate-100 border-slate-200 text-slate-400 opacity-60";
+                        }
+                    }
+
+                    optionsHTML += `
+                        <button 
+                            onclick="selectAnswer(${q.id}, ${optIndex})" 
+                            ${isAnswered ? 'disabled' : ''} 
+                            class="option-btn w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm flex items-center justify-between gap-3 ${btnStyle}">
+                            <span>${opt}</span>
+                            ${iconHTML}
+                        </button>
+                    `;
+                });
+
+                let explanationHTML = '';
+                if (isAnswered) {
+                    const isCorrect = selectedOption === q.correct;
+                    explanationHTML = `
+                        <div class="mt-4 p-4 rounded-xl text-xs sm:text-sm border ${isCorrect ? 'bg-emerald-50/80 border-emerald-200 text-emerald-900' : 'bg-red-50/80 border-red-200 text-red-900'} space-y-1">
+                            <div class="font-bold flex items-center gap-2">
+                                <i class="${isCorrect ? 'fa-solid fa-circle-check text-emerald-600' : 'fa-solid fa-triangle-exclamation text-red-500'}"></i>
+                                ${isCorrect ? 'Excellente réponse !' : 'Réponse incorrecte'}
+                            </div>
+                            <p class="leading-relaxed">${q.explanation}</p>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-md ${q.badgeBg}">${q.catLabel}</span>
+                        <span class="text-xs font-medium text-slate-400">Question ${q.id} / 20</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm sm:text-base mb-4 leading-snug">${q.question}</h3>
+                    <div class="space-y-2.5">
+                        ${optionsHTML}
+                    </div>
+                    ${explanationHTML}
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function selectAnswer(qId, optIndex) {
+            if (userAnswers.hasOwnProperty(qId)) return;
+
+            userAnswers[qId] = optIndex;
+            const question = questionsData.find(q => q.id === qId);
+
+            if (optIndex === question.correct) {
+                score++;
+            }
+
+            updateScore();
+            
+            // Get active filter
+            const activeTab = document.querySelector('.tab-btn.active');
+            const filter = activeTab ? activeTab.getAttribute('onclick').match(/'([^']+)'/)[1] : 'all';
+            
+            renderQuiz(filter);
+        }
+
+        function updateScore() {
+            const scoreText = document.getElementById('score-text');
+            const progressBar = document.getElementById('progress-bar');
+            
+            scoreText.innerText = `${score} / 20`;
+            const percentage = (score / 20) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        function filterQuiz(category) {
+            // Update UI tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white', 'active');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-100', 'text-slate-600');
+            event.currentTarget.classList.add('bg-slate-900', 'text-white', 'active');
+
+            renderQuiz(category);
+        }
+
+        // --- 3. EXPRESSIONS & AUDIO SYSTEM ---
+        const expressionsData = [
+            {
+                title: "Essuyer un échec",
+                def: "Subir un revers, connaître une défaite ou une grave désillusion malgré ses tentatives.",
+                example: "Malgré plusieurs mois de préparation intensive, l'équipe commerciale a essuyé un échec lors de l'appel d'offres.",
+                context: "Utilisé pour qualifier un résultat très négatif dans un projet professionnel ou politique.",
+                icon: "fa-solid fa-circle-xmark",
+                color: "text-red-500 bg-red-50"
+            },
+            {
+                title: "Faire face à",
+                def: "Affronter courageusement une difficulté, un problème ou un groupe d'opposants.",
+                example: "Pendant les fêtes de fin d'année, les supermarchés doivent faire face à une hausse massive des commandes.",
+                context: "Très courant au quotidien pour décrire la gestion du stress, des dépenses ou des imprévus.",
+                icon: "fa-solid fa-shield-halved",
+                color: "text-blue-500 bg-blue-50"
+            },
+            {
+                title: "Remettre sa démission",
+                def: "Présenter officiellement sa renonciation à un poste ou un mandat professionnel/politique.",
+                example: "Après un profond désaccord avec son directeur, Marc a décidé de remettre sa démission dès lundi matin.",
+                context: "Formule administrative et professionnelle standard pour annoncer qu'on quitte son travail.",
+                icon: "fa-solid fa-file-signature",
+                color: "text-amber-500 bg-amber-50"
+            },
+            {
+                title: "Mettre en place",
+                def: "Instaurer, organiser ou déployer un nouveau système, un règlement ou un dispositif.",
+                example: "L'université a mis en place un système d'aide au tutorat pour soutenir les étudiants de première année.",
+                context: "Incontournable dans le monde du travail et de l'administration.",
+                icon: "fa-solid fa-gears",
+                color: "text-emerald-500 bg-emerald-50"
+            },
+            {
+                title: "S'avérer être",
+                def: "Révéler avec certitude sa vraie nature après vérification ou expérience (se révéler).",
+                example: "Ce qui semblait être une mauvaise nouvelle s'est avéré être une formidable opportunité de carrière.",
+                context: "Fréquent à l'écrit comme à l'oral structuré pour exprimer un constat final.",
+                icon: "fa-solid fa-magnifying-glass",
+                color: "text-purple-500 bg-purple-50"
+            },
+            {
+                title: "Preindre de court",
+                def: "Surprendre brusquement quelqu'un en agissant plus vite que prévu.",
+                example: "L'annonce soudaine de la fermeture du magasin a pris tous les salariés de court.",
+                context: "S'utilise en cas d'imprévu qui empêche de se préparer à temps.",
+                icon: "fa-solid fa-bolt",
+                color: "text-yellow-500 bg-yellow-50"
+            },
+            {
+                title: "Au terme de",
+                def: "À la fin de, à l'aboutissement d'une période ou d'un processus long.",
+                example: "Au terme de trois heures de réunion intense, nous avons enfin trouvé un accord amiable.",
+                context: "Exprime la conclusion d'un processus chronologique.",
+                icon: "fa-solid fa-flag-checkered",
+                color: "text-indigo-500 bg-indigo-50"
+            },
+            {
+                title: "En plein cœur de",
+                def: "Au centre exact d'un lieu ou au moment le plus intense d'un événement.",
+                example: "Nous avons loué un petit appartement situé en plein cœur de Lyon pour le week-end.",
+                context: "S'applique aussi bien à la géographie (centre-ville) qu'au temps (au cœur de l'hiver).",
+                icon: "fa-solid fa-location-dot",
+                color: "text-rose-500 bg-rose-50"
+            },
+            {
+                title: "Tirer la sonnette d'alarme",
+                def: "Avertir publiquement d'un danger imminent ou d'un dysfonctionnement grave.",
+                example: "Les médecins ont tiré la sonnette d'alarme concernant le manque d'effectifs à l'hôpital.",
+                context: "Très employé dans les médias et le monde militant.",
+                icon: "fa-solid fa-bell",
+                color: "text-orange-500 bg-orange-50"
+            },
+            {
+                title: "Faire profil bas",
+                def: "Adopter une attitude discrète pour se faire oublier ou éviter les reproches.",
+                example: "Après avoir fait une faute dans son rapport, Julien préfère faire profil bas toute la semaine.",
+                context: "Courant entre collègues ou amis lorsqu'on veut éviter des tensions.",
+                icon: "fa-solid fa-user-ninja",
+                color: "text-slate-500 bg-slate-100"
+            }
+        ];
+
+        function renderExpressions() {
+            const container = document.getElementById('expressions-container');
+            container.innerHTML = '';
+
+            expressionsData.forEach((exp, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between space-y-4";
+                
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl ${exp.color} flex items-center justify-center font-bold text-base shadow-sm">
+                                    <i class="${exp.icon}"></i>
+                                </div>
+                                <h3 class="font-bold text-slate-900 text-base sm:text-lg">${exp.title}</h3>
+                            </div>
+                            <button 
+                                onclick="speakText('${exp.title.replace(/'/g, "\\'")}')" 
+                                title="Écouter la prononciation"
+                                class="w-9 h-9 rounded-full bg-slate-100 hover:bg-blue-100 hover:text-blue-600 text-slate-600 flex items-center justify-center transition">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-700 font-medium bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                            <strong class="text-slate-900">Définition :</strong> ${exp.def}
+                        </p>
+
+                        <div class="text-xs sm:text-sm space-y-1.5 pt-1">
+                            <p class="text-slate-600">
+                                <span class="font-semibold text-slate-800"><i class="fa-regular fa-comment-dots text-blue-500 me-1"></i> Exemple quotidien :</span> 
+                                « <em>${exp.example}</em> »
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                        <span>Contexte d'usage : ${exp.context}</span>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // Web Speech API Pronunciation
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel previous speech if playing
+                window.speechSynthesis.cancel();
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'fr-FR';
+                utterance.rate = 0.9; // Slightly slower for language learners
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("La synthèse vocale n'est pas supportée par votre navigateur.");
+            }
+        }
+
+        // Initialize page content on load
+        window.onload = function() {
+            renderQuiz('all');
+            renderExpressions();
+        };
+    </script>
+</body>
+</html>

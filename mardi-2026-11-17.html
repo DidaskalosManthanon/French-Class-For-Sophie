@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cambodge, les traces cachées de la langue française | Module Éducatif</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            indigoDeep: '#1e3a5f',
+            indigoDark: '#142740',
+            saffron: '#d97706',
+            saffronLight: '#fef3c7',
+            terracotta: '#c2410c',
+            cream: '#fafaf9',
+            sand: '#f3f1ed',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #fafaf9;
+      color: #1f2937;
+    }
+    .glass-nav {
+      background: rgba(250, 250, 249, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .card-shadow {
+      box-shadow: 0 10px 30px -5px rgba(30, 58, 95, 0.08), 0 4px 12px -2px rgba(30, 58, 95, 0.04);
+    }
+    .fade-in {
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Personnalisation de la barre de défilement */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f3f1ed;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e3a5f;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-indigoDeep">
+
+  <!-- Barre de navigation collante -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-stone-200/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="#video-section" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-xl bg-indigoDeep text-amber-400 flex items-center justify-center font-serif font-bold text-lg shadow-sm group-hover:bg-terracotta transition-colors">
+          FR
+        </span>
+        <div class="leading-tight">
+          <span class="block font-serif font-bold text-indigoDeep text-sm sm:text-base">Atelier Francophonie</span>
+          <span class="block text-[11px] uppercase tracking-wider text-stone-500 font-semibold">Cambodge • TV5MONDE</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1.5 bg-stone-100 p-1 rounded-2xl border border-stone-200/70">
+        <a href="#video-section" class="px-3.5 py-1.5 rounded-xl text-sm font-semibold text-stone-700 hover:text-indigoDeep hover:bg-white transition">1. Vidéo & Résumé</a>
+        <a href="#quiz-section" class="px-3.5 py-1.5 rounded-xl text-sm font-semibold text-stone-700 hover:text-indigoDeep hover:bg-white transition">2. Quiz (20)</a>
+        <a href="#expressions-section" class="px-3.5 py-1.5 rounded-xl text-sm font-semibold text-stone-700 hover:text-indigoDeep hover:bg-white transition">3. 12 Expressions</a>
+        <a href="#dialogue-section" class="px-3.5 py-1.5 rounded-xl text-sm font-semibold text-stone-700 hover:text-indigoDeep hover:bg-white transition">4. Dialogue</a>
+      </nav>
+
+      <!-- Indicateur de score compact dans le header -->
+      <div class="flex items-center gap-2">
+        <a href="#quiz-section" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigoDeep text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-indigoDark transition">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Score : <strong id="header-score">0</strong> / 20</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation mobile horizontale -->
+    <div class="md:hidden flex items-center justify-around border-t border-stone-200/70 px-2 py-1.5 text-xs font-semibold text-stone-600 bg-cream">
+      <a href="#video-section" class="px-2 py-1 rounded-lg hover:bg-stone-200/60">Vidéo</a>
+      <a href="#quiz-section" class="px-2 py-1 rounded-lg hover:bg-stone-200/60">Quiz (20)</a>
+      <a href="#expressions-section" class="px-2 py-1 rounded-lg hover:bg-stone-200/60">Expressions</a>
+      <a href="#dialogue-section" class="px-2 py-1 rounded-lg hover:bg-stone-200/60">Dialogue</a>
+    </div>
+  </header>
+
+  <!-- En-tête héroïque -->
+  <section class="relative overflow-hidden bg-indigoDeep text-white pt-12 pb-16 sm:pt-16 sm:pb-20">
+    <!-- Motif géométrique khmer subtil en arrière-plan -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="khmer-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+            <circle cx="30" cy="30" r="6" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#khmer-grid)" />
+      </svg>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-semibold tracking-wide uppercase mb-5">
+        <span>Documentaire TV5MONDE</span>
+        <span>•</span>
+        <span>Présenté par Athéna Sol</span>
+        <span>•</span>
+        <span>13 novembre 2026</span>
+      </div>
+
+      <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight max-w-4xl text-white">
+        Cambodge, les traces cachées de la langue française
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-200 max-w-3xl leading-relaxed">
+        Explorez l’histoire fascinante des mots français intégrés dans la langue khmère, les enjeux de la Francophonie contemporaine et les ponts culturels entre la France et l’Asie du Sud-Est à travers un parcours pédagogique complet.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#video-section" class="px-5 py-3 rounded-2xl bg-saffron hover:bg-amber-500 text-white font-semibold text-sm shadow-lg transition">
+          Regarder le documentaire
+        </a>
+        <a href="#quiz-section" class="px-5 py-3 rounded-2xl bg-white/15 hover:bg-white/25 text-white border border-white/25 font-semibold text-sm transition">
+          Commencer le quiz (20 questions)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-20">
+
+    <!-- ========================================================= -->
+    <!-- SECTION 1 : LA VIDÉO & RÉSUMÉ THÉMATIQUE                 -->
+    <!-- ========================================================= -->
+    <section id="video-section" class="scroll-mt-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-terracotta">Étape 1 • Observation & Compréhension</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-indigoDeep mt-1">Le documentaire et ses grands thèmes</h2>
+        </div>
+        <a href="https://youtu.be/WzTNE1Xnl9g?si=AHob9YNQzOrtJiN1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-indigoDeep hover:text-terracotta transition">
+          <span>Ouvrir sur YouTube</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Lecteur vidéo responsive 16:9 -->
+        <div class="lg:col-span-7 bg-stone-900 rounded-3xl overflow-hidden card-shadow border border-stone-200">
+          <div class="relative w-full pt-[56.25%]">
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/WzTNE1Xnl9g"
+              title="Cambodge, les traces cachées de la langue française | Athéna Sol | TV5MONDE"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="p-4 sm:p-5 bg-white border-t border-stone-100 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-stone-600">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg bg-indigoDeep/10 text-indigoDeep font-semibold">TV5MONDE</span>
+              <span>Animation : <strong>Athéna Sol</strong></span>
+            </div>
+            <span class="text-stone-500">Durée : ~19 min 34 • Publié le 13 nov. 2026</span>
+          </div>
+        </div>
+
+        <!-- Fiche de synthèse thématique en français -->
+        <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 card-shadow border border-stone-200/80 space-y-5">
+          <h3 class="font-serif text-xl font-bold text-indigoDeep border-b border-stone-100 pb-3">
+            Synthèse des axes du reportage
+          </h3>
+
+          <div class="space-y-4 text-sm leading-relaxed text-stone-700">
+            <div class="flex gap-3">
+              <span class="shrink-0 w-7 h-7 rounded-xl bg-amber-100 text-saffron font-bold flex items-center justify-center text-xs">01</span>
+              <div>
+                <h4 class="font-bold text-indigoDeep">Emprunts lexicaux et vie quotidienne (2:31 – 6:33)</h4>
+                <p class="mt-0.5 text-stone-600">De nombreux mots français (<em>école, valise, signaux</em>) ont été adoptés et transformés phonétiquement par la langue khmère au fil des usages populaires.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <span class="shrink-0 w-7 h-7 rounded-xl bg-orange-100 text-terracotta font-bold flex items-center justify-center text-xs">02</span>
+              <div>
+                <h4 class="font-bold text-indigoDeep">Protectorat et rupture historique (6:33 – 8:31)</h4>
+                <p class="mt-0.5 text-stone-600">Du protectorat français (1863–1953) à la tragédie des Khmers rouges (1975–1979), l’histoire explique pourquoi la transmission du français a été brisée.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <span class="shrink-0 w-7 h-7 rounded-xl bg-sky-100 text-indigoDeep font-bold flex items-center justify-center text-xs">03</span>
+              <div>
+                <h4 class="font-bold text-indigoDeep">francophonie vs Francophonie (9:43 – 12:51)</h4>
+                <p class="mt-0.5 text-stone-600">Même peu parlé dans la rue, le français demeure essentiel au sein de l’OIF, ainsi que dans le droit, la médecine et l’accès aux archives nationales.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <span class="shrink-0 w-7 h-7 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-xs">04</span>
+              <div>
+                <h4 class="font-bold text-indigoDeep">Mémoire, diaspora et avenir (12:51 – 19:34)</h4>
+                <p class="mt-0.5 text-stone-600">Avec <strong>Linda Nguon</strong> (podcast <em>Bánh Mì</em>), le film montre comment la langue tisse des ponts entre générations et fait du sommet de la Francophonie un geste pacifiste.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 2 : LE QUIZ INTERACTIF (20 QUESTIONS)             -->
+    <!-- ========================================================= -->
+    <section id="quiz-section" class="scroll-mt-24">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 card-shadow border border-stone-200/80">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-stone-200 pb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-terracotta">Étape 2 • Évaluation Interactive</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-indigoDeep mt-1">Quiz complet en 4 compétences</h2>
+            <p class="text-sm text-stone-600 mt-1">
+              Répondez aux 20 questions (5 par compétence). Cliquez sur une option pour afficher immédiatement la correction et l’explication.
+            </p>
+          </div>
+
+          <!-- Tableau de bord du score -->
+          <div class="flex flex-wrap items-center gap-3 bg-sand p-3.5 rounded-2xl border border-stone-200/80">
+            <div class="px-3">
+              <span class="block text-[11px] uppercase font-bold text-stone-500">Progression</span>
+              <span class="text-lg font-bold text-indigoDeep"><span id="answered-count">0</span> / 20</span>
+            </div>
+            <div class="h-8 w-px bg-stone-300"></div>
+            <div class="px-3">
+              <span class="block text-[11px] uppercase font-bold text-stone-500">Bonnes réponses</span>
+              <span class="text-lg font-bold text-emerald-700"><span id="quiz-score">0</span> / 20</span>
+            </div>
+            <button
+              id="reset-quiz-btn"
+              type="button"
+              class="ml-auto px-4 py-2 rounded-xl bg-white hover:bg-stone-100 text-indigoDeep border border-stone-300 text-xs font-bold shadow-sm transition cursor-pointer">
+              Réinitialiser
+            </button>
+          </div>
+        </div>
+
+        <!-- Onglets de filtrage par catégorie -->
+        <div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Catégories du quiz">
+          <button type="button" data-category="all" class="quiz-tab active px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-indigoDeep text-white shadow-sm transition cursor-pointer">
+            Toutes les questions (20)
+          </button>
+          <button type="button" data-category="comprehension" class="quiz-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer">
+            1. Compréhension (5)
+          </button>
+          <button type="button" data-category="vocabulaire" class="quiz-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer">
+            2. Vocabulaire (5)
+          </button>
+          <button type="button" data-category="grammaire" class="quiz-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer">
+            3. Grammaire (5)
+          </button>
+          <button type="button" data-category="prononciation" class="quiz-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer">
+            4. Prononciation (5)
+          </button>
+        </div>
+
+        <!-- Conteneur des questions générées dynamiquement -->
+        <div id="quiz-container" class="mt-8 space-y-6"></div>
+
+        <!-- Bannière de bilan final (visible lorsque les 20 questions sont complétées) -->
+        <div id="quiz-summary-banner" class="hidden mt-8 p-6 rounded-3xl bg-gradient-to-r from-indigoDeep to-indigoDark text-white shadow-lg fade-in">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-300 font-bold">Bilan du parcours</span>
+              <h3 id="summary-title" class="font-serif text-2xl font-bold mt-1">Félicitations !</h3>
+              <p id="summary-text" class="text-sm text-slate-200 mt-1"></p>
+            </div>
+            <button type="button" onclick="resetQuiz()" class="px-5 py-2.5 rounded-2xl bg-saffron hover:bg-amber-500 text-white font-bold text-sm transition cursor-pointer">
+              Refaire le quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 3 : 12 EXPRESSIONS IDIOMATIQUES                   -->
+    <!-- ========================================================= -->
+    <section id="expressions-section" class="scroll-mt-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-terracotta">Étape 3 • Lexique Vivant & Imagé</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-indigoDeep mt-1">12 expressions idiomatiques tirées de la vidéo</h2>
+          <p class="text-sm text-stone-600 mt-1 max-w-2xl">
+            Découvrez les tournures authentiques employées par Athéna Sol et Linda Nguon, illustrées avec des exemples du quotidien.
+          </p>
+        </div>
+
+        <button
+          id="toggle-all-expressions-btn"
+          type="button"
+          class="self-start md:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-indigoDeep hover:bg-indigoDark text-white text-xs sm:text-sm font-semibold shadow-sm transition cursor-pointer">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+          <span id="toggle-all-expressions-label">Afficher toutes les traductions anglaises</span>
+        </button>
+      </div>
+
+      <div id="expressions-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SECTION 4 : DIALOGUE THÉMATIQUE                           -->
+    <!-- ========================================================= -->
+    <section id="dialogue-section" class="scroll-mt-24">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 card-shadow border border-stone-200/80">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-terracotta">Étape 4 • Mise en Situation</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-indigoDeep mt-1">Dialogue : Un café à Paris avant Phnom Penh</h2>
+            <p class="text-sm text-stone-600 mt-1">
+              Échange entre <strong>Camille</strong> (étudiante française) et <strong>Sovann</strong> (étudiant franco-cambodgien) après le visionnage du documentaire.
+            </p>
+          </div>
+
+          <button
+            id="toggle-all-dialogue-btn"
+            type="button"
+            class="self-start md:self-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-saffron hover:bg-amber-600 text-white text-xs sm:text-sm font-semibold shadow-sm transition cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+            <span id="toggle-all-dialogue-label">Afficher la traduction anglaise du dialogue</span>
+          </button>
+        </div>
+
+        <div id="dialogue-container" class="mt-8 space-y-5 max-w-4xl mx-auto"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="bg-indigoDark text-slate-300 py-10 mt-16 border-t border-indigoDeep">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+      <div>
+        <p class="font-serif font-bold text-white text-base">Atelier Francophonie — Cambodge & Langue Française</p>
+        <p class="text-slate-400 mt-0.5">Ressource pédagogique conçue à partir du documentaire d’Athéna Sol sur TV5MONDE (13 novembre 2026).</p>
+      </div>
+      <a href="#video-section" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition">
+        Haut de page ↑
+      </a>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- LOGIQUE APPLICATIVE & DONNÉES PÉDAGOGIQUES                -->
+  <!-- ========================================================= -->
+  <script>
+    /**
+     * 1. DONNÉES DU QUIZ (20 QUESTIONS)
+     * Distribution exacte et mélangée des bonnes réponses :
+     * Q1: C | Q2: A | Q3: D | Q4: B | Q5: C
+     * Q6: B | Q7: D | Q8: A | Q9: C | Q10: B
+     * Q11: D | Q12: A | Q13: C | Q14: B | Q15: D
+     * Q16: A | Q17: C | Q18: D | Q19: A | Q20: B
+     * Total : A = 5, B = 5, C = 5, D = 5.
+     */
+    const quizData = [
+      // --- CATÉGORIE 1 : COMPRÉHENSION ---
+      {
+        id: 1,
+        category: 'comprehension',
+        categoryLabel: 'Compréhension',
+        question: "Quelle distinction Athéna Sol fait-elle entre la « francophonie » avec un petit « f » et la « Francophonie » avec un grand « F » ?",
+        options: {
+          A: "Le petit « f » désigne la France métropolitaine et le grand « F » les territoires d'outre-mer.",
+          B: "Le petit « f » concerne uniquement la littérature et le grand « F » le cinéma.",
+          C: "Le petit « f » désigne l'ensemble des personnes qui parlent français, tandis que le grand « F » désigne l'organisation politique et institutionnelle (OIF).",
+          D: "Le petit « f » renvoie au passé colonial et le grand « F » à l'apprentissage scolaire."
+        },
+        correct: "C",
+        explanation: "Dans la vidéo, Athéna explique que la francophonie (petit « f ») regroupe les locuteurs du français, alors que la Francophonie (grand « F ») désigne l'institution politique et diplomatique comme l'OIF."
+      },
+      {
+        id: 2,
+        category: 'comprehension',
+        categoryLabel: 'Compréhension',
+        question: "Pourquoi la transmission de la langue française a-t-elle été brutalement interrompue au Cambodge dans les années 1970 ?",
+        options: {
+          A: "À cause du régime des Khmers rouges (1975-1979) qui a décimé les élites et interdit les langues étrangères.",
+          B: "Parce que le roi Norodom Sihanouk a signé un décret interdisant l'enseignement du français dès 1953.",
+          C: "En raison d'une réforme éducative remplaçant le français par le japonais dans toutes les écoles.",
+          D: "Parce que l'Institut français du Cambodge a définitivement fermé ses portes en 1970."
+        },
+        correct: "A",
+        explanation: "Entre 1975 et 1979, la dictature des Khmers rouges a ciblé les intellectuels et banni les langues étrangères, brisant la transmission du français."
+      },
+      {
+        id: 3,
+        category: 'comprehension',
+        categoryLabel: 'Compréhension',
+        question: "Quel est l'un des intérêts très concrets de la maîtrise du français pour les historiens cambodgiens mentionné dans le documentaire ?",
+        options: {
+          A: "Pouvoir traduire les inscriptions anciennes des temples d'Angkor en anglais.",
+          B: "Enseigner l'histoire de l'Asie du Sud-Est dans les lycées parisiens.",
+          C: "Rédiger de nouveaux dictionnaires à partir du sanscrit et du pali.",
+          D: "Accéder à une grande partie des archives nationales du Cambodge qui sont rédigées en français."
+        },
+        correct: "D",
+        explanation: "Athéna souligne que le français représente un enjeu d'accès au savoir puisque de nombreuses archives nationales cambodgiennes sont écrites en français."
+      },
+      {
+        id: 4,
+        category: 'comprehension',
+        categoryLabel: 'Compréhension',
+        question: "Que représente le bánh mì (ou num pang) évoqué lors de l'entretien avec Linda Nguon ?",
+        options: {
+          A: "Une danse traditionnelle du Ballet royal khmer remise au goût du jour à Paris.",
+          B: "L'héritage de la baguette apportée pendant la colonisation française, intégrée au quotidien en Asie du Sud-Est.",
+          C: "Un festival de cinéma francophone organisé chaque année à Phnom Penh.",
+          D: "Le nom d'une bourse universitaire destinée aux étudiants cambodgiens en médecine."
+        },
+        correct: "B",
+        explanation: "Linda Nguon explique que le bánh mì (et son équivalent cambodgien) est issu de la baguette introduite lors de la colonisation française et réappropriée localement."
+      },
+      {
+        id: 5,
+        category: 'comprehension',
+        categoryLabel: 'Compréhension',
+        question: "Comment Athéna Sol qualifie-t-elle l'organisation d'un sommet de la Francophonie au Cambodge à la fin de sa vidéo ?",
+        options: {
+          A: "Comme une simple opération commerciale destinée à promouvoir le tourisme français.",
+          B: "Comme une tentative d'imposer le français face à la domination de l'anglais sur internet.",
+          C: "Comme un geste politique, géopolitique et pacifiste dans un lieu chargé d'histoire.",
+          D: "Comme un hommage exclusif à la gastronomie franco-asiatique."
+        },
+        correct: "C",
+        explanation: "En conclusion, Athéna précise que ce sommet n'est ni une provocation impérialiste ni un simple hommage poétique, mais un geste politique, géopolitique et pacifiste tourné vers l'avenir."
+      },
+
+      // --- CATÉGORIE 2 : VOCABULAIRE ---
+      {
+        id: 6,
+        category: 'vocabulaire',
+        categoryLabel: 'Vocabulaire',
+        question: "Dans la vidéo, que désigne un « emprunt lexical » ?",
+        options: {
+          A: "Un prêt financier accordé par l'OIF pour financer des bibliothèques au Cambodge.",
+          B: "Un mot qui passe d'une langue à une autre en s'adaptant souvent à la prononciation et aux usages locaux.",
+          C: "Une règle de grammaire ancienne issue du sanscrit et conservée en français moderne.",
+          D: "Un dictionnaire bilingue utilisé uniquement par les diplomates."
+        },
+        correct: "B",
+        explanation: "Un emprunt lexical est un mot adopté par une langue à partir d'une autre langue, souvent transformé (« khmérisé ») dans sa forme et son sens."
+      },
+      {
+        id: 7,
+        category: 'vocabulaire',
+        categoryLabel: 'Vocabulaire',
+        question: "Au début de la vidéo, Athéna dit : « En France, on est vraiment largué en ce qui concerne les pays d'Asie ». Que signifie l'adjectif familier « largué » ici ?",
+        options: {
+          A: "Être passionné et très bien informé sur un sujet.",
+          B: "Être en avance sur les tendances culturelles internationales.",
+          C: "Être nostalgique d'une époque passée.",
+          D: "Être dépassé, perdu ou mal informé sur un sujet."
+        },
+        correct: "D",
+        explanation: "Dans le registre familier, « être largué » signifie ne plus suivre, être dépassé ou manquer de connaissances sur un sujet."
+      },
+      {
+        id: 8,
+        category: 'vocabulaire',
+        categoryLabel: 'Vocabulaire',
+        question: "Lorsque le mot français « signaux » est passé en khmer, quel sens concret a-t-il pris selon la vidéo ?",
+        options: {
+          A: "Les clignotants d'un véhicule.",
+          B: "Les panneaux d'interdiction de stationner.",
+          C: "Les feux d'artifice lors des fêtes nationales.",
+          D: "Les sonneries d'école."
+        },
+        correct: "A",
+        explanation: "Athéna donne l'exemple du mot dérivé de « signaux », qui désigne en khmer les clignotants d'une voiture ou d'un scooter."
+      },
+      {
+        id: 9,
+        category: 'vocabulaire',
+        categoryLabel: 'Vocabulaire',
+        question: "Que signifie l'expression « faire le pont entre deux cultures » utilisée par Linda Nguon ?",
+        options: {
+          A: "Prendre plusieurs jours de congé entre deux jours fériés.",
+          B: "Construire une infrastructure routière entre deux pays voisins.",
+          C: "Créer du lien, favoriser le dialogue et la compréhension mutuelle entre deux cultures.",
+          D: "Abandonner sa culture d'origine pour en adopter une nouvelle."
+        },
+        correct: "C",
+        explanation: "Au sens figuré, « faire le pont » signifie relier deux univers, deux générations ou deux cultures pour faciliter les échanges."
+      },
+      {
+        id: 10,
+        category: 'vocabulaire',
+        categoryLabel: 'Vocabulaire',
+        question: "Athéna mentionne « une petite créature ingouvernable » en parlant de l'usage linguistique. Que signifie « ingouvernable » ?",
+        options: {
+          A: "Qui obéit strictement aux règles de l'Académie française.",
+          B: "Qu'on ne peut ni contrôler, ni diriger, ni soumettre à des règles imposées d'en haut.",
+          C: "Qui appartient exclusivement au vocabulaire juridique.",
+          D: "Qui disparaît très rapidement sans laisser de trace."
+        },
+        correct: "B",
+        explanation: "« Ingouvernable » signifie impossible à maîtriser ou à contrôler : les locuteurs utilisent les mots librement malgré les recommandations officielles."
+      },
+
+      // --- CATÉGORIE 3 : GRAMMAIRE ---
+      {
+        id: 11,
+        category: 'grammaire',
+        categoryLabel: 'Grammaire',
+        question: "Quelle locution exprime correctement la concession, sur le modèle de la vidéo : « ______ le français soit peu parlé au quotidien, le Cambodge accueille le sommet » ?",
+        options: {
+          A: "Parce que",
+          B: "Puisque",
+          C: "Alors que",
+          D: "Bien que"
+        },
+        correct: "D",
+        explanation: "La locution conjonctive « bien que » exprime la concession et est obligatoirement suivie du subjonctif (« soit »)."
+      },
+      {
+        id: 12,
+        category: 'grammaire',
+        categoryLabel: 'Grammaire',
+        question: "Complétez avec le pronom relatif approprié : « C'est une histoire complexe ______ on est souvent peu fier en tant que Français. »",
+        options: {
+          A: "dont",
+          B: "que",
+          C: "où",
+          D: "lequel"
+        },
+        correct: "A",
+        explanation: "On dit « être fier de quelque chose ». Le complément introduit par la préposition « de » est remplacé par le pronom relatif « dont »."
+      },
+      {
+        id: 13,
+        category: 'grammaire',
+        categoryLabel: 'Grammaire',
+        question: "Dans la phrase « Il faut que nous ______ (prendre) conscience de cette histoire », quelle est la forme verbale correcte ?",
+        options: {
+          A: "prenons",
+          B: "prendrons",
+          C: "prenions",
+          D: "avons pris"
+        },
+        correct: "C",
+        explanation: "Après la tournure impersonnelle « il faut que », le verbe se conjugue au subjonctif présent (« que nous prenions »)."
+      },
+      {
+        id: 14,
+        category: 'grammaire',
+        categoryLabel: 'Grammaire',
+        question: "Choisissez l'accord correct du participe passé : « Les mots français que la langue khmère a ______ se sont transformés avec le temps. »",
+        options: {
+          A: "emprunté",
+          B: "empruntés",
+          C: "empruntée",
+          D: "empruntées"
+        },
+        correct: "B",
+        explanation: "Avec l'auxiliaire « avoir », le participe passé s'accorde avec le COD (« Les mots français », masculin pluriel) placé avant le verbe : « empruntés »."
+      },
+      {
+        id: 15,
+        category: 'grammaire',
+        categoryLabel: 'Grammaire',
+        question: "Comment reformuler correctement à la voix passive : « Le régime des Khmers rouges a interdit les langues étrangères » ?",
+        options: {
+          A: "Les langues étrangères ont interdit le régime des Khmers rouges.",
+          B: "Les langues étrangères étaient interdire par le régime des Khmers rouges.",
+          C: "Les langues étrangères sont interdits par le régime des Khmers rouges.",
+          D: "Les langues étrangères ont été interdites par le régime des Khmers rouges."
+        },
+        correct: "D",
+        explanation: "Au passé composé passif, on utilise « ont été » + participe passé accordé avec le sujet féminin pluriel (« les langues étrangères ») → « ont été interdites »."
+      },
+
+      // --- CATÉGORIE 4 : PRONONCIATION ---
+      {
+        id: 16,
+        category: 'prononciation',
+        categoryLabel: 'Prononciation',
+        question: "Comment se prononce le mot « Khmer » en français standard (tel que prononcé par Athéna Sol dans la vidéo) ?",
+        options: {
+          A: "/kmɛʁ/ (comme « kmère », en prononçant le « k » initial et le « r » final).",
+          B: "/mɛʁ/ (comme « mer », avec un « k » muet).",
+          C: "/ʃmɛʁ/ (avec un son « ch » au début).",
+          D: "/kme/ (avec un « r » final muet comme dans « aimer »)."
+        },
+        correct: "A",
+        explanation: "En français, le groupe consonantique « kh » dans « khmer » se prononce /k/ et le « r » final se prononce : /kmɛʁ/."
+      },
+      {
+        id: 17,
+        category: 'prononciation',
+        categoryLabel: 'Prononciation',
+        question: "Pourquoi certains mots français empruntés en khmer changent-ils de prononciation, comme « chef » ou « école » ?",
+        options: {
+          A: "Parce que l'alphabet khmer ne possède aucune voyelle.",
+          B: "Parce que les locuteurs khmers refusent de prononcer les syllabes accentuées.",
+          C: "Parce que certains sons français (comme le /ʃ/ de « chef » ou certaines consonnes finales) n'existent pas en khmer et sont remplacés par des sons proches.",
+          D: "Parce que le français du XIXe siècle se prononçait exactement comme le khmer moderne."
+        },
+        correct: "C",
+        explanation: "Comme l'explique la vidéo, lorsqu'un son n'existe pas dans le système phonologique de la langue d'accueil, il est adapté (« khmérisé ») vers le son le plus proche."
+      },
+      {
+        id: 18,
+        category: 'prononciation',
+        categoryLabel: 'Prononciation',
+        question: "Dans l'expression « les archives nationales », où se trouve la liaison obligatoire ?",
+        options: {
+          A: "Entre « archives » et « nationales » (/aʁʃivz‿nasjɔnal/).",
+          B: "Il n'y a aucune liaison dans ce groupe nominal.",
+          C: "Uniquement sur le « s » final de « nationales ».",
+          D: "Entre le déterminant « les » et le nom commençant par une voyelle « archives » (/lez‿aʁʃiv/)."
+        },
+        correct: "D",
+        explanation: "La liaison est obligatoire entre un déterminant pluriel (« les ») et un nom commençant par une voyelle (« archives »), produisant le son /z/."
+      },
+      {
+        id: 19,
+        category: 'prononciation',
+        categoryLabel: 'Prononciation',
+        question: "Quel son nasal entend-on à la fois dans « Cambodge » (1re syllabe) et dans « langue » ?",
+        options: {
+          A: "La voyelle nasale /ɑ̃/ (comme dans « dans » ou « France »).",
+          B: "La voyelle nasale /ɔ̃/ (comme dans « pont » ou « nom »).",
+          C: "La voyelle nasale /ɛ̃/ (comme dans « pain » ou « lien »).",
+          D: "Il n'y a aucune voyelle nasale dans ces deux mots."
+        },
+        correct: "A",
+        explanation: "Dans « Cambodge » (« Cam- ») et « langue » (« lan- »), les graphies « am » et « an » devant consonne se prononcent avec la voyelle nasale /ɑ̃/."
+      },
+      {
+        id: 20,
+        category: 'prononciation',
+        categoryLabel: 'Prononciation',
+        question: "Dans la phrase orale d'Athéna « j'ai même pas saisi », quel phénomène phonétique courant du français parlé observe-t-on ?",
+        options: {
+          A: "L'ajout d'un « t » euphonique entre « même » et « pas ».",
+          B: "L'élision / l'omission de l'adverbe de négation « ne » (« je n'ai même pas » → « j'ai même pas »).",
+          C: "La prononciation du « s » final de « pas ».",
+          D: "La transformation du son /ɛ/ en /u/."
+        },
+        correct: "B",
+        explanation: "À l'oral familier et courant, l'adverbe « ne » est très fréquemment omis dans la négation (« j'ai pas », « c'est pas »)."
+      }
+    ];
+
+    /**
+     * 2. DONNÉES DES 12 EXPRESSIONS IDIOMATIQUES AVEC ILLUSTRATIONS SVG UNIQUES
+     */
+    const expressionsData = [
+      {
+        id: 1,
+        timestamp: "0:44",
+        french: "Être largué(e)",
+        english: "To be out of the loop / completely lost",
+        definitionFr: "Ne plus comprendre ce qui se passe, manquer d'informations ou être dépassé par un sujet.",
+        definitionEn: "To no longer understand what is going on, lack information, or be out of touch with a topic.",
+        exampleFr: "« Sans sous-titres ni contexte historique, j'étais complètement largué pendant les dix premières minutes du débat. »",
+        exampleEn: "“Without subtitles or historical context, I was completely lost during the first ten minutes of the debate.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-sky-50">
+          <rect width="240" height="120" fill="#e0f2fe"/>
+          <path d="M0 92 Q 30 82 60 92 T 120 92 T 180 92 T 240 92 L 240 120 L 0 120 Z" fill="#0284c7" opacity="0.25"/>
+          <path d="M0 100 Q 40 90 80 100 T 160 100 T 240 100 L 240 120 L 0 120 Z" fill="#1e3a5f"/>
+          <!-- Île déserte -->
+          <ellipse cx="120" cy="96" rx="46" ry="12" fill="#f59e0b"/>
+          <!-- Personnage perplexe avec point d'interrogation -->
+          <circle cx="115" cy="64" r="9" fill="#1e3a5f"/>
+          <path d="M103 88 C103 76, 127 76, 127 88 Z" fill="#c2410c"/>
+          <text x="132" y="54" font-family="serif" font-weight="bold" font-size="24" fill="#d97706">?</text>
+          <text x="92" y="48" font-family="serif" font-weight="bold" font-size="18" fill="#1e3a5f">?</text>
+          <!-- Bateau au loin -->
+          <polygon points="185,84 215,84 208,92 192,92" fill="#475569"/>
+          <polygon points="198,66 198,82 212,82" fill="#ffffff"/>
+        </svg>`
+      },
+      {
+        id: 2,
+        timestamp: "0:29",
+        french: "Ça vaut le coup",
+        english: "It's worth it / It's worth the effort",
+        definitionFr: "Une action ou une expérience mérite l'effort, le temps ou l'argent qu'on y consacre.",
+        definitionEn: "An action or experience deserves the effort, time, or money invested in it.",
+        exampleFr: "« Le voyage jusqu'à Siem Reap est long, mais découvrir les temples au lever du soleil, ça vaut vraiment le coup ! »",
+        exampleEn: "“The trip to Siem Reap is long, but seeing the temples at sunrise is really worth it!”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-amber-50">
+          <rect width="240" height="120" fill="#fef3c7"/>
+          <circle cx="120" cy="60" r="44" fill="#fde68a"/>
+          <!-- Diamant / Trésor brillant -->
+          <polygon points="120,28 152,52 120,92 88,52" fill="#d97706"/>
+          <polygon points="120,28 136,52 120,92 104,52" fill="#f59e0b"/>
+          <polygon points="104,52 136,52 120,28" fill="#fef08a"/>
+          <!-- Étoiles d'éclat -->
+          <path d="M62 36 L65 44 L73 47 L65 50 L62 58 L59 50 L51 47 L59 44 Z" fill="#1e3a5f"/>
+          <path d="M178 40 L180 46 L186 48 L180 50 L178 56 L176 50 L170 48 L176 46 Z" fill="#c2410c"/>
+        </svg>`
+      },
+      {
+        id: 3,
+        timestamp: "0:29",
+        french: "Exploser son empreinte carbone",
+        english: "To skyrocket one's carbon footprint",
+        definitionFr: "Augmenter énormément ses émissions de gaz à effet de serre, par exemple en prenant souvent l'avion.",
+        definitionEn: "To drastically increase one's greenhouse gas emissions, for instance by flying frequently.",
+        exampleFr: "« Si je fais trois allers-retours intercontinentaux cette année, je vais exploser mon empreinte carbone. »",
+        exampleEn: "“If I take three intercontinental round trips this year, I'm going to skyrocket my carbon footprint.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-emerald-50">
+          <rect width="240" height="120" fill="#ecfdf5"/>
+          <!-- Empreinte stylisée -->
+          <ellipse cx="95" cy="68" rx="18" ry="28" transform="rotate(-15 95 68)" fill="#1e3a5f"/>
+          <circle cx="80" cy="34" r="5" fill="#1e3a5f"/>
+          <circle cx="92" cy="30" r="4.5" fill="#1e3a5f"/>
+          <circle cx="103" cy="32" r="4" fill="#1e3a5f"/>
+          <circle cx="112" cy="37" r="3.5" fill="#1e3a5f"/>
+          <!-- Flèche vers le haut / jauge rouge -->
+          <path d="M142 90 L142 36 L130 48 M142 36 L154 48" stroke="#c2410c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="182" cy="52" r="14" fill="#d97706" opacity="0.35"/>
+          <circle cx="174" cy="40" r="10" fill="#c2410c" opacity="0.3"/>
+        </svg>`
+      },
+      {
+        id: 4,
+        timestamp: "0:58",
+        french: "Planqué dans les tréfonds (d'internet)",
+        english: "Hidden in the depths (of the internet)",
+        definitionFr: "Caché tout au fond d'un espace ou d'un site web, très difficile à trouver sans chercher longtemps.",
+        definitionEn: "Hidden deep down in a place or website, very hard to find without extensive searching.",
+        exampleFr: "« J'ai fini par retrouver ce vieux rapport officiel planqué dans les tréfonds d'un site gouvernemental. »",
+        exampleEn: "“I finally found that old official report hidden in the depths of a government website.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-slate-100">
+          <rect width="240" height="120" fill="#1e293b"/>
+          <!-- Dossiers empilés -->
+          <rect x="45" y="25" width="150" height="16" rx="4" fill="#334155"/>
+          <rect x="45" y="47" width="150" height="16" rx="4" fill="#475569"/>
+          <rect x="45" y="69" width="150" height="26" rx="6" fill="#d97706"/>
+          <text x="60" y="86" font-family="sans-serif" font-size="11" font-weight="bold" fill="#ffffff">ARCHIVE_1953.PDF</text>
+          <!-- Faisceau de lampe torche / loupe -->
+          <circle cx="176" cy="82" r="15" stroke="#fef08a" stroke-width="3" fill="rgba(254,240,138,0.2)"/>
+          <line x1="187" y1="93" x2="202" y2="108" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        id: 5,
+        timestamp: "1:54",
+        french: "Être pointilleux / pointilleuse",
+        english: "To be meticulous / nitpicky",
+        definitionFr: "Accorder une attention extrême aux moindres détails, à la précision et à l'exactitude.",
+        definitionEn: "To pay extreme attention to the smallest details, precision, and accuracy.",
+        exampleFr: "« Notre professeure de phonétique est très pointilleuse sur la prononciation des voyelles nasales. »",
+        exampleEn: "“Our phonetics teacher is very meticulous about the pronunciation of nasal vowels.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-orange-50">
+          <rect width="240" height="120" fill="#fff7ed"/>
+          <!-- Cible de précision -->
+          <circle cx="120" cy="60" r="40" fill="#fed7aa"/>
+          <circle cx="120" cy="60" r="26" fill="#fb923c"/>
+          <circle cx="120" cy="60" r="12" fill="#c2410c"/>
+          <circle cx="120" cy="60" r="4" fill="#ffffff"/>
+          <!-- Fléchette au centre -->
+          <line x1="168" y1="24" x2="123" y2="58" stroke="#1e3a5f" stroke-width="4" stroke-linecap="round"/>
+          <polygon points="168,24 182,20 174,34" fill="#1e3a5f"/>
+        </svg>`
+      },
+      {
+        id: 6,
+        timestamp: "2:10",
+        french: "Garder en tête",
+        english: "To keep in mind",
+        definitionFr: "Ne pas oublier une information importante afin d'en tenir compte dans sa réflexion.",
+        definitionEn: "Not to forget an important piece of information so as to take it into account.",
+        exampleFr: "« Il faut toujours garder en tête que le Cambodge abrite plusieurs minorités linguistiques, pas uniquement les Khmers. »",
+        exampleEn: "“One must always keep in mind that Cambodia is home to several linguistic minorities, not only the Khmer.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-indigo-50">
+          <rect width="240" height="120" fill="#eef2ff"/>
+          <!-- Profil stylisé -->
+          <path d="M95 102 L95 85 C78 82, 74 62, 82 44 C90 26, 122 22, 138 38 C148 48, 146 66, 138 76 L138 102 Z" fill="#1e3a5f"/>
+          <!-- Ampoule / Idée brillante -->
+          <circle cx="114" cy="52" r="13" fill="#fbbf24"/>
+          <rect x="109" y="64" width="10" height="6" rx="2" fill="#f59e0b"/>
+          <line x1="114" y1="30" x2="114" y2="35" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="94" y1="42" x2="98" y2="45" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="134" y1="42" x2="130" y2="45" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        id: 7,
+        timestamp: "4:40",
+        french: "Conserver sous cloche",
+        english: "To preserve under glass / freeze in time",
+        definitionFr: "Maintenir quelque chose figé dans son état d'origine, à l'abri de toute évolution ou influence extérieure.",
+        definitionEn: "To keep something frozen in its original state, shielded from any evolution or outside influence.",
+        exampleFr: "« Une langue vivante n'est jamais conservée sous cloche : elle évolue au contact des gens qui la parlent. »",
+        exampleEn: "“A living language is never preserved under glass: it evolves through contact with the people who speak it.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-cyan-50">
+          <rect width="240" height="120" fill="#ecfeff"/>
+          <!-- Socle en bois -->
+          <rect x="75" y="92" width="90" height="10" rx="5" fill="#92400e"/>
+          <!-- Cloche en verre -->
+          <path d="M85 92 L85 56 A35 35 0 0 1 155 56 L155 92 Z" fill="rgba(56, 189, 248, 0.25)" stroke="#0284c7" stroke-width="2.5"/>
+          <circle cx="120" cy="17" r="4" fill="#0284c7"/>
+          <!-- Mot figé à l'intérieur -->
+          <text x="120" y="68" text-anchor="middle" font-family="serif" font-weight="bold" font-size="16" fill="#1e3a5f">« MOT »</text>
+        </svg>`
+      },
+      {
+        id: 8,
+        timestamp: "6:34",
+        french: "Être pris en étau",
+        english: "To be caught in a vise / squeezed between two forces",
+        definitionFr: "Se retrouver bloqué ou sous forte pression entre deux forces, deux pays ou deux contraintes opposées.",
+        definitionEn: "To find oneself trapped or under heavy pressure between two opposing forces, countries, or constraints.",
+        exampleFr: "« Historiquement, le royaume du Cambodge s'est retrouvé pris en étau entre deux puissants voisins, le Siam et le Vietnam. »",
+        exampleEn: "“Historically, the Kingdom of Cambodia found itself caught in a vise between two powerful neighbors, Siam and Vietnam.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-rose-50">
+          <rect width="240" height="120" fill="#fff1f2"/>
+          <!-- Mâchoire gauche -->
+          <rect x="35" y="38" width="58" height="44" rx="6" fill="#1e3a5f"/>
+          <path d="M93 52 L106 52 L106 68 L93 68" fill="#475569"/>
+          <!-- Mâchoire droite -->
+          <rect x="147" y="38" width="58" height="44" rx="6" fill="#1e3a5f"/>
+          <path d="M147 52 L134 52 L134 68 L147 68" fill="#475569"/>
+          <!-- Élément central comprimé -->
+          <rect x="108" y="34" width="24" height="52" rx="6" fill="#d97706"/>
+        </svg>`
+      },
+      {
+        id: 9,
+        timestamp: "6:54",
+        french: "Sur le papier / dans les faits",
+        english: "On paper / in practice (in reality)",
+        definitionFr: "Opposition entre ce qui est officiellement écrit dans les textes et ce qui se passe réellement sur le terrain.",
+        definitionEn: "Contrast between what is officially written in texts and what actually happens in reality.",
+        exampleFr: "« Sur le papier, le protectorat laissait son autonomie au roi, mais dans les faits, l'administration française dirigeait le pays. »",
+        exampleEn: "“On paper, the protectorate left the king his autonomy, but in practice, the French administration ran the country.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-stone-100">
+          <rect width="240" height="120" fill="#f5f5f4"/>
+          <!-- Feuille de papier à gauche -->
+          <rect x="42" y="24" width="64" height="72" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="54" y1="42" x2="94" y2="42" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+          <line x1="54" y1="54" x2="88" y2="54" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+          <line x1="54" y1="66" x2="92" y2="66" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+          <!-- Séparateur -->
+          <text x="120" y="65" text-anchor="middle" font-weight="bold" font-size="14" fill="#c2410c">≠</text>
+          <!-- Engrenage / Réalité à droite -->
+          <circle cx="166" cy="60" r="22" fill="#1e3a5f"/>
+          <circle cx="166" cy="60" r="9" fill="#f59e0b"/>
+        </svg>`
+      },
+      {
+        id: 10,
+        timestamp: "14:32",
+        french: "Faire le pont (entre deux cultures)",
+        english: "To bridge the gap (between two cultures)",
+        definitionFr: "Servir d'intermédiaire, relier deux mondes, deux cultures ou deux générations pour faciliter le dialogue.",
+        definitionEn: "To act as a link, connecting two worlds, cultures, or generations to foster dialogue.",
+        exampleFr: "« Grâce à son podcast, Linda fait le pont entre la diaspora asiatique et le public francophone. »",
+        exampleEn: "“Through her podcast, Linda bridges the gap between the Asian diaspora and the French-speaking audience.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-amber-50">
+          <rect width="240" height="120" fill="#fffbeb"/>
+          <!-- Deux rives -->
+          <rect x="0" y="76" width="62" height="44" fill="#1e3a5f"/>
+          <rect x="178" y="76" width="62" height="44" fill="#c2410c"/>
+          <!-- Eau -->
+          <rect x="62" y="92" width="116" height="28" fill="#38bdf8" opacity="0.4"/>
+          <!-- Arche du pont -->
+          <path d="M56 76 Q 120 34 184 76" stroke="#d97706" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <line x1="90" y1="58" x2="90" y2="76" stroke="#d97706" stroke-width="3"/>
+          <line x1="120" y1="53" x2="120" y2="76" stroke="#d97706" stroke-width="3"/>
+          <line x1="150" y1="58" x2="150" y2="76" stroke="#d97706" stroke-width="3"/>
+        </svg>`
+      },
+      {
+        id: 11,
+        timestamp: "14:14",
+        french: "Renouer avec ses racines",
+        english: "To reconnect with one's roots",
+        definitionFr: "Retrouver un lien profond avec ses origines familiales, sa culture d'origine ou l'histoire de ses ancêtres.",
+        definitionEn: "To rediscover a deep connection with one's family origins, heritage, or ancestral history.",
+        exampleFr: "« Apprendre la langue de ses grands-parents est souvent une belle façon de renouer avec ses racines. »",
+        exampleEn: "“Learning one's grandparents' language is often a wonderful way to reconnect with one's roots.”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-lime-50">
+          <rect width="240" height="120" fill="#f7fee7"/>
+          <!-- Sol -->
+          <rect x="0" y="74" width="240" height="46" fill="#78350f" opacity="0.15"/>
+          <!-- Arbre et feuillage -->
+          <rect x="115" y="46" width="10" height="30" fill="#78350f"/>
+          <circle cx="120" cy="36" r="22" fill="#15803d"/>
+          <circle cx="104" cy="42" r="14" fill="#22c55e"/>
+          <circle cx="136" cy="42" r="14" fill="#22c55e"/>
+          <!-- Racines profondes -->
+          <path d="M120 76 C112 88, 96 96, 84 104 M120 76 C120 92, 118 100, 116 108 M120 76 C128 88, 144 96, 156 104" stroke="#92400e" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        id: 12,
+        timestamp: "18:03",
+        french: "Être scotché(e)",
+        english: "To be blown away / glued in amazement",
+        definitionFr: "Être tellement surpris, impressionné ou captivé qu'on reste sans voix, comme collé sur place.",
+        definitionEn: "To be so surprised, impressed, or captivated that one is left speechless, as if glued to the spot.",
+        exampleFr: "« Quand j'ai entendu des jeunes Cambodgiens chanter en français avec autant d'émotion, j'étais complètement scotché ! »",
+        exampleEn: "“When I heard young Cambodians singing in French with so much emotion, I was completely blown away!”",
+        svg: `<svg viewBox="0 0 240 120" class="w-full h-32 rounded-2xl bg-purple-50">
+          <rect width="240" height="120" fill="#faf5ff"/>
+          <!-- Visage ébahi -->
+          <circle cx="120" cy="60" r="34" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+          <circle cx="108" cy="52" r="5" fill="#1e3a5f"/>
+          <circle cx="132" cy="52" r="5" fill="#1e3a5f"/>
+          <ellipse cx="120" cy="72" rx="7" ry="10" fill="#c2410c"/>
+          <!-- Étoiles de stupéfaction -->
+          <text x="64" y="42" font-size="18" fill="#d97706">✦</text>
+          <text x="164" y="42" font-size="18" fill="#1e3a5f">✦</text>
+        </svg>`
+      }
+    ];
+
+    /**
+     * 3. DONNÉES DU DIALOGUE THÉMATIQUE
+     */
+    const dialogueData = [
+      {
+        speaker: "Camille",
+        role: "Étudiante en histoire à Paris",
+        side: "left",
+        fr: "Salut Sovann ! J’ai regardé hier le reportage d’Athéna Sol sur le Cambodge et la langue française. Franchement, j’étais scotchée : je ne savais pas qu’il y avait autant de mots français cachés dans le khmer !",
+        en: "Hi Sovann! Yesterday I watched Athéna Sol's documentary on Cambodia and the French language. Honestly, I was blown away: I had no idea there were so many French words hidden in Khmer!"
+      },
+      {
+        speaker: "Sovann",
+        role: "Étudiant franco-cambodgien",
+        side: "right",
+        fr: "Ah, tu l’as vu ! Oui, mes grands-parents utilisent tous les jours des mots comme « valise », « école » ou « signaux » pour parler des clignotants du scooter, souvent sans même savoir qu’ils viennent du français.",
+        en: "Oh, you saw it! Yes, my grandparents use words like 'valise', 'école', or 'signaux' to refer to scooter turn signals every day, often without even knowing they come from French."
+      },
+      {
+        speaker: "Camille",
+        role: "Étudiante en histoire à Paris",
+        side: "left",
+        fr: "C’est fascinant de voir qu’une langue n’est jamais conservée sous cloche. Mais j’ai aussi été très touchée par le passage sur les Khmers rouges et l’interruption de la transmission.",
+        en: "It's fascinating to see that a language is never preserved under glass. But I was also deeply moved by the part about the Khmer Rouge and how transmission was cut off."
+      },
+      {
+        speaker: "Sovann",
+        role: "Étudiant franco-cambodgien",
+        side: "right",
+        fr: "C’est une histoire lourde, c’est vrai. Pourtant, le français reste super utile aujourd’hui à Phnom Penh, notamment en médecine, en droit et pour consulter les archives nationales.",
+        en: "It's a heavy history, that's true. Yet French remains super useful today in Phnom Penh, especially in medicine, law, and for consulting the national archives."
+      },
+      {
+        speaker: "Camille",
+        role: "Étudiante en histoire à Paris",
+        side: "left",
+        fr: "Et comme l’explique Linda Nguon dans la vidéo, ça permet aussi de faire le pont entre les générations. Tu pars toujours à Phnom Penh pendant le sommet de la Francophonie ?",
+        en: "And as Linda Nguon explains in the video, it also helps bridge the gap between generations. Are you still heading to Phnom Penh during the Francophonie summit?"
+      },
+      {
+        speaker: "Sovann",
+        role: "Étudiant franco-cambodgien",
+        side: "right",
+        fr: "Oui, j’y vais le mois prochain pour renouer avec mes racines et enregistrer des entretiens avec ma famille. Et promets-moi de goûter un vrai num pang cambodgien quand tu viendras me rendre visite !",
+        en: "Yes, I'm going next month to reconnect with my roots and record interviews with my family. And promise me you'll try a real Cambodian num pang when you come visit me!"
+      }
+    ];
+
+    // =========================================================
+    // ÉTAT DE L'APPLICATION
+    // =========================================================
+    const userAnswers = {}; // { questionId: 'A' | 'B' | 'C' | 'D' }
+    let activeCategory = 'all';
+    let allExpressionsTranslated = false;
+    let allDialogueTranslated = false;
+
+    // =========================================================
+    // RENDU ET LOGIQUE DU QUIZ
+    // =========================================================
+    function renderQuiz() {
+      const container = document.getElementById('quiz-container');
+      const filtered = activeCategory === 'all'
+        ? quizData
+        : quizData.filter(q => q.category === activeCategory);
+
+      container.innerHTML = filtered.map(q => {
+        const chosen = userAnswers[q.id];
+        const isAnswered = Boolean(chosen);
+
+        const badgeColors = {
+          comprehension: 'bg-sky-100 text-indigoDeep',
+          vocabulaire: 'bg-amber-100 text-amber-800',
+          grammaire: 'bg-orange-100 text-terracotta',
+          prononciation: 'bg-emerald-100 text-emerald-800'
+        };
+
+        const optionsHtml = Object.entries(q.options).map(([letter, text]) => {
+          let btnClasses = "border-stone-200 bg-cream hover:border-indigoDeep hover:bg-white text-stone-800";
+          let badgeClasses = "bg-white text-indigoDeep border border-stone-300";
+          let statusIcon = "";
+
+          if (isAnswered) {
+            if (letter === q.correct) {
+              btnClasses = "border-emerald-600 bg-emerald-50/90 text-emerald-950 font-semibold ring-2 ring-emerald-500/30";
+              badgeClasses = "bg-emerald-600 text-white border-emerald-600";
+              statusIcon = `<span class="ml-auto shrink-0 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-600 text-white">Bonne réponse</span>`;
+            } else if (letter === chosen && chosen !== q.correct) {
+              btnClasses = "border-rose-500 bg-rose-50 text-rose-950 opacity-95";
+              badgeClasses = "bg-rose-600 text-white border-rose-600";
+              statusIcon = `<span class="ml-auto shrink-0 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-rose-600 text-white">Votre choix</span>`;
+            } else {
+              btnClasses = "border-stone-200 bg-stone-50 text-stone-400 opacity-70";
+              badgeClasses = "bg-stone-200 text-stone-500 border-stone-300";
+            }
+          }
+
+          return `
+            <button
+              type="button"
+              onclick="selectAnswer(${q.id}, '${letter}')"
+              ${isAnswered ? 'disabled' : ''}
+              class="w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 transition-all flex items-center gap-3.5 ${btnClasses} ${isAnswered ? 'cursor-default' : 'cursor-pointer'}">
+              <span class="shrink-0 w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm transition-colors ${badgeClasses}">
+                ${letter}
+              </span>
+              <span class="text-sm sm:text-base leading-snug">${text}</span>
+              ${statusIcon}
+            </button>
+          `;
+        }).join('');
+
+        const explanationHtml = isAnswered ? `
+          <div class="mt-4 p-4 rounded-2xl ${chosen === q.correct ? 'bg-emerald-50 border border-emerald-200 text-emerald-950' : 'bg-amber-50 border border-amber-200 text-stone-900'} fade-in">
+            <div class="flex items-start gap-2.5">
+              <span class="shrink-0 mt-0.5 w-5 h-5 rounded-full ${chosen === q.correct ? 'bg-emerald-600' : 'bg-saffron'} text-white flex items-center justify-center text-xs font-bold">
+                i
+              </span>
+              <div class="text-xs sm:text-sm leading-relaxed">
+                <strong class="block mb-0.5">
+                  ${chosen === q.correct ? 'Excellent !' : `Réponse attendue : ${q.correct}.`} Explication pédagogique :
+                </strong>
+                <span>${q.explanation}</span>
+              </div>
+            </div>
+          </div>
+        ` : '';
+
+        return `
+          <article class="p-5 sm:p-6 rounded-3xl bg-white border border-stone-200/90 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1 rounded-full ${badgeColors[q.category]}">
+                Question ${q.id} • ${q.categoryLabel}
+              </span>
+              ${isAnswered ? `<span class="text-xs font-semibold ${chosen === q.correct ? 'text-emerald-700' : 'text-rose-600'}">${chosen === q.correct ? '+1 point' : '0 point'}</span>` : '<span class="text-xs text-stone-400">1 seule bonne réponse</span>'}
+            </div>
+
+            <h3 class="font-semibold text-base sm:text-lg text-indigoDeep leading-snug mb-4">
+              ${q.question}
+            </h3>
+
+            <div class="space-y-2.5">
+              ${optionsHtml}
+            </div>
+
+            ${explanationHtml}
+          </article>
+        `;
+      }).join('');
+    }
+
+    function selectAnswer(questionId, letter) {
+      if (userAnswers[questionId]) return;
+      userAnswers[questionId] = letter;
+      updateScoreBoard();
+      renderQuiz();
+    }
+
+    function updateScoreBoard() {
+      const answeredIds = Object.keys(userAnswers);
+      const answeredCount = answeredIds.length;
+      let score = 0;
+
+      answeredIds.forEach(id => {
+        const q = quizData.find(item => item.id === Number(id));
+        if (q && userAnswers[id] === q.correct) {
+          score++;
+        }
+      });
+
+      document.getElementById('answered-count').textContent = answeredCount;
+      document.getElementById('quiz-score').textContent = score;
+      document.getElementById('header-score').textContent = score;
+
+      const banner = document.getElementById('quiz-summary-banner');
+      if (answeredCount === quizData.length) {
+        banner.classList.remove('hidden');
+        const titleEl = document.getElementById('summary-title');
+        const textEl = document.getElementById('summary-text');
+
+        if (score >= 17) {
+          titleEl.textContent = `Bravo ! Score remarquable : ${score} / 20`;
+          textEl.textContent = "Vous maîtrisez parfaitement les subtilités historiques, lexicales, grammaticales et phonétiques du reportage.";
+        } else if (score >= 12) {
+          titleEl.textContent = `Très bon travail ! Score : ${score} / 20`;
+          textEl.textContent = "Vous avez saisi l'essentiel du documentaire d'Athéna Sol. Relisez les explications pour perfectionner les derniers détails.";
+        } else {
+          titleEl.textContent = `Parcours terminé ! Score : ${score} / 20`;
+          textEl.textContent = "N'hésitez pas à revoir la vidéo et à réinitialiser le quiz pour consolider vos acquis.";
+        }
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function resetQuiz() {
+      Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+      updateScoreBoard();
+      renderQuiz();
+    }
+
+    // Gestion des onglets du quiz
+    document.querySelectorAll('.quiz-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.quiz-tab').forEach(b => {
+          b.classList.remove('bg-indigoDeep', 'text-white', 'shadow-sm');
+          b.classList.add('bg-stone-100', 'text-stone-700');
+        });
+        btn.classList.remove('bg-stone-100', 'text-stone-700');
+        btn.classList.add('bg-indigoDeep', 'text-white', 'shadow-sm');
+        activeCategory = btn.dataset.category;
+        renderQuiz();
+      });
+    });
+
+    document.getElementById('reset-quiz-btn').addEventListener('click', resetQuiz);
+
+    // =========================================================
+    // RENDU DES 12 EXPRESSIONS IDIOMATIQUES
+    // =========================================================
+    function renderExpressions() {
+      const grid = document.getElementById('expressions-grid');
+      grid.innerHTML = expressionsData.map(exp => `
+        <article class="bg-white rounded-3xl p-5 card-shadow border border-stone-200/80 flex flex-col justify-between transition hover:-translate-y-0.5">
+          <div>
+            <!-- Illustration SVG -->
+            <div class="relative overflow-hidden rounded-2xl border border-stone-200/60 mb-4">
+              ${exp.svg}
+              <span class="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-indigoDeep/90 text-white text-[11px] font-bold">
+                Vidéo ${exp.timestamp}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-terracotta uppercase tracking-wider">
+              <span>Expression #${exp.id}</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-indigoDeep mt-1">
+              ${exp.french}
+            </h3>
+
+            <p class="mt-2.5 text-sm text-stone-700 leading-relaxed">
+              <strong class="text-indigoDeep">Sens :</strong> ${exp.definitionFr}
+            </p>
+
+            <div class="mt-3 p-3 rounded-2xl bg-sand border border-stone-200/70 text-xs sm:text-sm text-stone-700 italic leading-relaxed">
+              ${exp.exampleFr}
+            </div>
+
+            <!-- Bloc de traduction anglaise masquable -->
+            <div id="exp-en-${exp.id}" class="${allExpressionsTranslated ? '' : 'hidden'} mt-3 p-3.5 rounded-2xl bg-indigoDeep/5 border border-indigoDeep/15 text-xs sm:text-sm text-indigoDark space-y-1.5 fade-in">
+              <p class="font-bold text-indigoDeep">🇬🇧 ${exp.english}</p>
+              <p class="text-stone-700"><strong>Meaning:</strong> ${exp.definitionEn}</p>
+              <p class="italic text-stone-600">${exp.exampleEn}</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onclick="toggleSingleExpression(${exp.id})"
+            id="exp-btn-${exp.id}"
+            class="mt-4 w-full py-2.5 px-3 rounded-xl border border-stone-300 hover:border-indigoDeep bg-cream hover:bg-indigoDeep hover:text-white text-indigoDeep text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer">
+            <span>${allExpressionsTranslated ? 'Masquer la traduction anglaise' : 'Traduire en anglais'}</span>
+          </button>
+        </article>
+      `).join('');
+    }
+
+    function toggleSingleExpression(id) {
+      const box = document.getElementById(`exp-en-${id}`);
+      const btn = document.getElementById(`exp-btn-${id}`);
+      const isHidden = box.classList.contains('hidden');
+
+      if (isHidden) {
+        box.classList.remove('hidden');
+        btn.querySelector('span').textContent = 'Masquer la traduction anglaise';
+      } else {
+        box.classList.add('hidden');
+        btn.querySelector('span').textContent = 'Traduire en anglais';
+      }
+    }
+
+    document.getElementById('toggle-all-expressions-btn').addEventListener('click', () => {
+      allExpressionsTranslated = !allExpressionsTranslated;
+      document.getElementById('toggle-all-expressions-label').textContent = allExpressionsTranslated
+        ? 'Masquer toutes les traductions anglaises'
+        : 'Afficher toutes les traductions anglaises';
+      renderExpressions();
+    });
+
+    // =========================================================
+    // RENDU DU DIALOGUE THÉMATIQUE
+    // =========================================================
+    function renderDialogue() {
+      const container = document.getElementById('dialogue-container');
+      container.innerHTML = dialogueData.map((line, index) => {
+        const isLeft = line.side === 'left';
+        return `
+          <div class="flex flex-col ${isLeft ? 'items-start' : 'items-end'}">
+            <div class="max-w-2xl w-full rounded-3xl p-5 border ${isLeft ? 'bg-cream border-stone-200 rounded-tl-md' : 'bg-indigoDeep/5 border-indigoDeep/15 rounded-tr-md'}">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs text-white ${isLeft ? 'bg-terracotta' : 'bg-indigoDeep'}">
+                    ${line.speaker[0]}
+                  </span>
+                  <div>
+                    <span class="font-bold text-sm text-indigoDeep">${line.speaker}</span>
+                    <span class="block text-[11px] text-stone-500">${line.role}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onclick="toggleDialogueLine(${index})"
+                  id="dial-btn-${index}"
+                  class="px-3 py-1 rounded-xl bg-white hover:bg-indigoDeep hover:text-white text-indigoDeep border border-stone-300 text-[11px] font-bold transition cursor-pointer">
+                  ${allDialogueTranslated ? 'Masquer EN' : 'Traduction EN'}
+                </button>
+              </div>
+
+              <p class="text-sm sm:text-base text-stone-800 leading-relaxed">
+                ${line.fr}
+              </p>
+
+              <div id="dial-en-${index}" class="${allDialogueTranslated ? '' : 'hidden'} mt-3 pt-2.5 border-t border-stone-200/80 text-xs sm:text-sm text-indigoDark italic fade-in">
+                🇬🇧 ${line.en}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleDialogueLine(index) {
+      const box = document.getElementById(`dial-en-${index}`);
+      const btn = document.getElementById(`dial-btn-${index}`);
+      const isHidden = box.classList.contains('hidden');
+
+      if (isHidden) {
+        box.classList.remove('hidden');
+        btn.textContent = 'Masquer EN';
+      } else {
+        box.classList.add('hidden');
+        btn.textContent = 'Traduction EN';
+      }
+    }
+
+    document.getElementById('toggle-all-dialogue-btn').addEventListener('click', () => {
+      allDialogueTranslated = !allDialogueTranslated;
+      document.getElementById('toggle-all-dialogue-label').textContent = allDialogueTranslated
+        ? 'Masquer la traduction anglaise du dialogue'
+        : 'Afficher la traduction anglaise du dialogue';
+      renderDialogue();
+    });
+
+    // Initialisation au chargement
+    renderQuiz();
+    renderExpressions();
+    renderDialogue();
+  </script>
+</body>
+</html>
